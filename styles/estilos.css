@@ -1,0 +1,10 @@
+/* estilos.css */
+.card-title {
+    color: #ff5733; /* Color personalizado para los títulos */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#fondo{
+    background-color: aqua;
+    color: #ff5733;
+}
