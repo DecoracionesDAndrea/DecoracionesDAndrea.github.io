@@ -25,3 +25,29 @@ footer{
     font-size: 1.05rem;
     
 }
+
+#btn-contactanos{
+    background-color: #c500e8; /* Fondo del botón */
+    border: none; /* Sin bordes */
+    color: white; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cursor tipo mano al pasar sobre el botón */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px #999; /* Sombra para darle profundidad */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Animaciones suaves */
+      
+}
+
+      
+/* Efecto al pasar el cursor */
+#btn-contactanos:hover {
+background-color: #850097; /* Cambia el color al hacer hover */
+box-shadow: 0 6px #666; /* Mayor sombra al pasar el cursor */
+}
+
+/* Efecto al hacer clic */
+#btn-contactanos:active {
+background-color: #c500e8; /* Cambia el color al hacer clic */
+box-shadow: 0 2px #666; /* Sombra más pequeña al hacer clic */
+transform: translateY
+}
