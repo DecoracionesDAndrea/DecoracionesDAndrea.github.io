@@ -2,7 +2,7 @@
 
 
 .container, body{
-    background-color: rgb(214, 250, 255);
+    background-color: white;
 }
 
 .carrousell-text{
@@ -22,8 +22,7 @@ footer{
 }
 
 .nav-link.active {
-    font-size: 1.05rem;
-    
+    font-size: 1.15rem;
 }
 
 #btn-contactanos{
@@ -50,4 +49,14 @@ box-shadow: 0 6px #666; /* Mayor sombra al pasar el cursor */
 background-color: #c500e8; /* Cambia el color al hacer clic */
 box-shadow: 0 2px #666; /* Sombra más pequeña al hacer clic */
 transform: translateY
+}
+
+.navbar-container, .nav-tabs .nav-link.active, .nav-tabs .nav-link{
+    /* background-color: #1b3039; */
+    background-color: #6c4675;
+    color: white;
+}
+
+.card{
+    background-color: #f6e1ed;
 }
