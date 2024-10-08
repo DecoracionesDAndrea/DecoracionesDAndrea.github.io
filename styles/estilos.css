@@ -19,7 +19,14 @@ footer{
     color: white;
     padding: 20px;
     text-align: center;
-}
+
+    /*
+    margin-top: auto; // Empuja el footer al fondo
+    min-height: 100vh; // Altura mínima de la página para ocupar toda la pantalla
+    display: flex;
+    flex-direction: column;
+    */
+} 
 
 .nav-link.active {
     font-size: 1.15rem;
@@ -61,4 +68,24 @@ transform: translateY
 }
 .card{
     background-color: #f6e1ed;
+}
+
+.breadcrumb {
+    background-color: transparent; /* Elimina el fondo por defecto */
+    padding: 0; /* Elimina el padding innecesario */
+}
+.breadcrumb-item a {
+    color: #6c0055; /* Color azul predeterminado de Bootstrap */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+.breadcrumb-item a:hover {
+    text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+}
+.breadcrumb-item.active {
+    color: #6c757d; /* Color para la página actual */
+}
+.breadcrumb-divider::before {
+    content: '>'; /* Cambia el divisor entre elementos */
+    color: #6c757d; /* Color del divisor */
+    margin: 0 5px;
 }
