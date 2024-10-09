@@ -20,7 +20,7 @@ const id = obtenerID();
 const elementosTitulo = document.getElementsByClassName("titulo-card");
 
 // Verificar si el ID es válido
-if (id && id >= 0 && id < titulos.length) {
+if (id && id >= 0 && id <= titulos.length) {
     // Asignar el título correspondiente a todos los elementos con la clase "titulo"
     for (let i = 0; i < elementosTitulo.length; i++) {
         elementosTitulo[i].innerText = titulos[id-1];
