@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
 
 .container, body{
     background-color: white;
@@ -88,4 +88,11 @@ transform: translateY
     content: '>'; /* Cambia el divisor entre elementos */
     color: #6c757d; /* Color del divisor */
     margin: 0 5px;
+}
+p{
+    text-align: justify;
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 450;
+    font-style: normal;
 }
