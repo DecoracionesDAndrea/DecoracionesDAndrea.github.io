@@ -89,7 +89,7 @@ transform: translateY
     color: #6c757d; /* Color del divisor */
     margin: 0 5px;
 }
-p{
+.parrafo-text{
     text-align: justify;
     font-family: "Maven Pro", sans-serif;
     font-optical-sizing: auto;
