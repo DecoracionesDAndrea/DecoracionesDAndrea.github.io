@@ -30,7 +30,12 @@ function handleResize() {
             newLink.className = 'nav-link'; // Clase para el enlace
             newLink.href = 'https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos'; // Define la URL de destino
             newLink.textContent = 'Contacto'; // Texto del enlace
-            
+            const button = `<button class="btn btn-primary ms-5" id="btn-contactanos">
+              <a class="nav-link" href="https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos">
+                <img src="../images/wsp-icon.png" alt="WhatsApp" style="width: 22px; height: 22px; margin-right: 5px;">
+                Contacto
+              </a>
+            </button>`
             const newButton = document.createElement('button');
             newButton.id = 'btn-contactanos'; // Usa el mismo ID
             newButton.className = 'btn btn-success';
@@ -63,7 +68,7 @@ function toggleMessageBox() {
 
 function sendWhatsAppMessage() {
     var message = document.getElementById('whatsappMessage').value;
-    var phoneNumber = '1234567890';  // Reemplaza con tu número de teléfono
+    var phoneNumber = '998805588';  // Reemplaza con tu número de teléfono
     var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }

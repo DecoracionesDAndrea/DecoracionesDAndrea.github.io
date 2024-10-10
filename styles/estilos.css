@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Sketch&display=swap');
 
 .container, body{
     background-color: white;
@@ -150,4 +151,11 @@ transform: translateY
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.navbar-brand{
+    font-family: "Londrina Sketch", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
 }
