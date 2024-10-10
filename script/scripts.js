@@ -50,3 +50,20 @@ window.addEventListener('resize', handleResize);
 
 // Ejecutar la función al cargar la página
 handleResize();
+
+
+function toggleMessageBox() {
+    var messageBox = document.getElementById('messageBox');
+    if (messageBox.style.display === 'none' || messageBox.style.display === '') {
+        messageBox.style.display = 'flex';
+    } else {
+        messageBox.style.display = 'none';
+    }
+}
+
+function sendWhatsAppMessage() {
+    var message = document.getElementById('whatsappMessage').value;
+    var phoneNumber = '1234567890';  // Reemplaza con tu número de teléfono
+    var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}

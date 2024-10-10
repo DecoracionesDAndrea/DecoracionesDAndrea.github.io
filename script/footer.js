@@ -24,3 +24,21 @@ function cargarFooter() {
   // Llamar a la función para cargar el footer cuando la página haya terminado de cargar
   document.addEventListener('DOMContentLoaded', cargarFooter);
   
+
+  // Función para insertar el botón de WhatsApp en todas las páginas
+(function() {
+  // Crear el contenedor del botón flotante
+  var whatsappButton = document.createElement('div');
+  whatsappButton.innerHTML = `
+      <div class="whatsapp-button" onclick="toggleMessageBox()">
+    <img src="../images/wsp-icon-orig.png" alt="WhatsApp" style="position: relative; top: 2.5px; width: 90%; height: 90%;">
+  </div>
+
+  <div class="message-box" id="messageBox">
+      <textarea id="whatsappMessage" placeholder="Escribe tu mensaje..."></textarea>
+      <button onclick="sendWhatsAppMessage()">Enviar</button>
+  </div>
+  `;
+  document.body.appendChild(whatsappButton);
+
+})();

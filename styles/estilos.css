@@ -96,3 +96,58 @@ transform: translateY
     font-weight: 450;
     font-style: normal;
 }
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.whatsapp-button a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    line-height: 60px;
+}
+
+/* Estilo del cuadro de texto */
+.message-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-box textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.message-box button {
+    padding: 10px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
