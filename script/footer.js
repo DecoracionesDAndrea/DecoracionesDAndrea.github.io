@@ -11,8 +11,8 @@ function cargarFooter() {
           </p>
           <nav>Whatsapp</nav>
           <p>
-            <a href="https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Fredy Aranibar</a> | 
-            <a href="https://wa.me/993003810?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Giovana Quispe</a>
+            <a href="https://wa.me/51998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Fredy Aranibar</a> | 
+            <a href="https://wa.me/51993003810?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Giovana Quispe</a>
           </p>
         </div>
       </footer>

@@ -28,7 +28,7 @@ function handleResize() {
             const padrebtn = document.getElementById('container-nav');
             const newLink = document.createElement('a'); // Crear un elemento <a>
             newLink.className = 'nav-link'; // Clase para el enlace
-            newLink.href = 'https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos'; // Define la URL de destino
+            newLink.href = 'https://wa.me/51998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos'; // Define la URL de destino
             newLink.textContent = 'Contacto'; // Texto del enlace
             const button = `<button class="btn btn-primary ms-5" id="btn-contactanos">
               <a class="nav-link" href="https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos">
@@ -68,7 +68,7 @@ function toggleMessageBox() {
 
 function sendWhatsAppMessage() {
     var message = document.getElementById('whatsappMessage').value;
-    var phoneNumber = '998805588';  // Reemplaza con tu número de teléfono
+    var phoneNumber = '51998805588';  // Reemplaza con tu número de teléfono
     var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
