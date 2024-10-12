@@ -65,7 +65,8 @@ transform: translateY
     color: white;
 }
 .nav-tabs .nav-link.active{
-    background-color: #6c0055;
+    /* background-color: #6c0055; */
+    background-color: #9c78a4;
 }
 .card{
     background-color: #f6e1ed;

@@ -3,15 +3,16 @@ function cargarFooter() {
     const footerHTML = `
       <footer class="mt-5">
         <div>
-          <p>&copy; 2024 Decoraciones D'Andrea. Todos los derechos reservados.</p>
-          <nav>
+          <p>&copy; 2024 Eventos y Detalles D'Andrea. Todos los derechos reservados.</p>
+          <p>
             <a href="https://www.facebook.com" target="_blank" style="color: white; margin: 0 15px;">Facebook</a>
             <a href="https://www.tiktok.com" target="_blank" style="color: white; margin: 0 15px;">TikTok</a>
             <a href="https://www.instagram.com" target="_blank" style="color: white; margin: 0 15px;">Instagram</a>
-          </nav>
+          </p>
+          <nav>Whatsapp</nav>
           <p>
-            <a href="https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Sr. Fredy Aranibar</a> | 
-            <a href="https://wa.me/993003810?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Sra. Giovana Quispe</a>
+            <a href="https://wa.me/998805588?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Fredy Aranibar</a> | 
+            <a href="https://wa.me/993003810?text=Estoy%20interesado%20en%20decoraciones%20de%20eventos" style="color: white;">Giovana Quispe</a>
           </p>
         </div>
       </footer>
