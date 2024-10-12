@@ -26,7 +26,7 @@ function obtenerID() {
 function actualizarTitulos() {
     // Obtener el ID de la URL
     const elementosTitulo = document.getElementsByClassName("titulo-card");
-
+    const elementosImagenMain = document.getElementsByClassName("imagen-card");
     // Iteramos sobre los elementos y les asignamos los títulos
     for (let i = 0; i < elementosTitulo.length; i++) {
         // Verificamos que haya suficientes títulos en el arreglo
@@ -36,6 +36,9 @@ function actualizarTitulos() {
             // Si hay más elementos que títulos, podrías asignar un valor por defecto
             elementosTitulo[i].innerText = "Título no disponible";
         }
+    }
+    for (let i = 0; i < elementosImagenMain.length ; i++) {
+      elementosImagenMain[i].src = './images/card/'+ (i+2) + '.jpeg';
     }
 }
 

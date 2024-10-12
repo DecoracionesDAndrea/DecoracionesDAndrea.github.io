@@ -34,9 +34,9 @@ function actualizarTitulos() {
     // Verificar si el ID es válido
     if (id && id >= 1 && id <= titulos.length) {
         // Asignar el título correspondiente a todos los elementos con la clase "titulo-card"
+        elementosImagenMain[0].src = "../images/card/" + id  + ".jpeg"; // unica imagenmain
         for (let i = 0; i < elementosTitulo.length; i++) {
-            elementosTitulo[i].innerText = titulos[id - 1];
-            elementosImagenMain[i].src = "../images/card/" + id + ".jpeg";
+          elementosTitulo[i].innerText = titulos[id - 1];
         }
     } else {
         // Si no hay ID válido, mostrar un mensaje de error en todos los elementos
