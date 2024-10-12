@@ -43,3 +43,8 @@ function cargarFooter() {
   document.body.appendChild(whatsappButton);
 
 })();
+
+document.addEventListener("DOMContentLoaded", function() {
+  var navbarHeight = document.querySelector('.navbar').offsetHeight;
+  document.body.style.paddingTop = navbarHeight + 'px';
+});
