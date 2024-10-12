@@ -29,12 +29,14 @@ function actualizarTitulos() {
 
     // Seleccionamos todos los elementos que tienen la clase "titulo-card"
     const elementosTitulo = document.getElementsByClassName("titulo-card");
+    const elementosImagenMain = document.getElementsByClassName("imagen-card");
 
     // Verificar si el ID es válido
     if (id && id >= 1 && id <= titulos.length) {
         // Asignar el título correspondiente a todos los elementos con la clase "titulo-card"
         for (let i = 0; i < elementosTitulo.length; i++) {
             elementosTitulo[i].innerText = titulos[id - 1];
+            elementosImagenMain[i].src = "../images/card/" + id + ".jpeg";
         }
     } else {
         // Si no hay ID válido, mostrar un mensaje de error en todos los elementos
