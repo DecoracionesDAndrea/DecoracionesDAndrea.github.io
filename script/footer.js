@@ -45,7 +45,7 @@ function cargarFooter() {
   
   var backbutton = document.createElement('div');
   backbutton.innerHTML = `<button id="btnArriba" onclick="irArriba()">
-  <img src="../images/backtop.png" style="position: relative; top: 0px; width: 40px; height: 40px;">
+  <img src="../images/backtop.png" style="position: relative; top: 0px; width: 60px; height: 60px;">
   </button>`;
   document.body.appendChild(backbutton);
 
