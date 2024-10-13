@@ -160,3 +160,19 @@ transform: translateY
     font-style: normal;
     font-size: 30px;
 }
+
+
+#btnArriba { 
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 99;
+    background-color: transparent; /* Asegurarse de que el fondo sea transparente */
+    color: white;
+    border: none; /* Sin borde */
+    padding: 1px;
+    border-radius: 80%; /* Borde redondeado */
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -42,9 +42,39 @@ function cargarFooter() {
   `;
   document.body.appendChild(whatsappButton);
 
+  
+  var backbutton = document.createElement('div');
+  backbutton.innerHTML = `<button id="btnArriba" onclick="irArriba()">
+  <img src="../images/backtop.png" style="position: relative; top: 0px; width: 40px; height: 40px;">
+  </button>`;
+  document.body.appendChild(backbutton);
+
+
+
 })();
 
 document.addEventListener("DOMContentLoaded", function() {
   var navbarHeight = document.querySelector('.navbar').offsetHeight;
   document.body.style.paddingTop = navbarHeight + 'px';
 });
+
+
+// Mostrar el botón cuando se hace scroll hacia abajo
+window.onscroll = function() {
+  mostrarBoton();
+};
+
+function mostrarBoton() {
+  const btn = document.getElementById("btnArriba");
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      btn.style.display = "block";
+  } else {
+      btn.style.display = "none";
+  }
+}
+
+// Función para volver a la parte superior
+function irArriba() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
