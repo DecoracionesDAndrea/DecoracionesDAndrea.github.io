@@ -38,7 +38,17 @@ function actualizarTitulos() {
         }
     }
     for (let i = 0; i < elementosImagenMain.length ; i++) {
-      elementosImagenMain[i].src = './images/card/'+ (i+2) + '.jpeg';
+      //elementosImagenMain[i].src = './images/card/'+ (i+2) + '.jpeg';
+      let href = elementosImagenMain[i].closest('.card').querySelector('a').href;
+    
+      // Usa URLSearchParams para extraer el valor del parámetro 'id'
+      let urlParams = new URLSearchParams(href.split('?')[1]); 
+      let idcard = urlParams.get('id'); // Obtiene el valor del parámetro 'id'
+      
+      // Asigna la nueva fuente de la imagen usando el 'id' extraído
+      if (idcard) {
+          elementosImagenMain[i].src = './images/card/' + idcard + '.jpeg';
+      }
     }
 }
 
