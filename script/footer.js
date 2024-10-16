@@ -6,7 +6,7 @@ function cargarFooter() {
           <p>&copy; 2024 Eventos y Detalles D'Andrea. Todos los derechos reservados.</p>
           <p>
             <a href="https://www.facebook.com" target="_blank" style="color: white; margin: 0 15px;">Facebook</a>
-            <a href="https://www.tiktok.com" target="_blank" style="color: white; margin: 0 15px;">TikTok</a>
+            <a href="https://www.tiktok.com/@giovanamilagros19" target="_blank" style="color: white; margin: 0 15px;">TikTok</a>
             <a href="https://www.instagram.com" target="_blank" style="color: white; margin: 0 15px;">Instagram</a>
           </p>
           <nav>Whatsapp</nav>
@@ -49,6 +49,13 @@ function cargarFooter() {
   </button>`;
   document.body.appendChild(backbutton);
 
+  var btnDarkMode = document.createElement('div');
+  btnDarkMode.innerHTML = `<!-- Botón para alternar modo oscuro con íconos -->
+    <button id="toggle-dark-mode" class="btn btn-secondary">
+      <i id="icon-mode" class="fas fa-moon"></i>
+    </button>`
+  const navbar = document.querySelector(".navbar-container");
+  navbar.insertAdjacentElement("afterend", btnDarkMode);
 
 
 })();
@@ -78,3 +85,69 @@ function irArriba() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleButton = document.getElementById("toggle-dark-mode");
+  const icon = document.getElementById("icon-mode");
+  const btnContactanos = document.getElementById("btn-contactanos");
+
+  // Verificar si el modo oscuro está almacenado en localStorage
+  const darkMode = localStorage.getItem("dark-mode");
+
+  // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+  if (darkMode === "enabled") {
+      document.body.classList.add("dark-mode");
+      document.querySelector('.navbar').classList.add("dark-mode");
+      document.querySelectorAll('.card').forEach(card => {
+          card.classList.add("dark-mode");
+      });
+      document.querySelectorAll('.container').forEach(container => {
+          container.classList.add("dark-mode");
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.add("dark-mode");
+      });
+
+      // Aplicar dark mode al botón de contactanos
+      btnContactanos.classList.add("btn-dark-mode");
+
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
+  }
+
+  // Evento para alternar el modo oscuro
+  toggleButton.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      document.querySelector('.navbar').classList.toggle("dark-mode");
+      document.querySelectorAll('.card').forEach(card => {
+          card.classList.toggle("dark-mode");
+      });
+      document.querySelectorAll('.container').forEach(container => {
+          container.classList.toggle("dark-mode");
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.toggle("dark-mode");
+      });
+      document.querySelectorAll('.nav-tabs .nav-link.active').forEach(link => {
+          link.classList.toggle("dark-mode");
+      });
+
+      // Alternar dark mode en el botón de contactanos
+      btnContactanos.classList.toggle("btn-dark-mode");
+
+      // Alternar el ícono entre la luna y el sol
+      if (document.body.classList.contains("dark-mode")) {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+
+          // Guardar el estado del modo oscuro en localStorage
+          localStorage.setItem("dark-mode", "enabled");
+      } else {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+
+          // Guardar el estado del modo claro en localStorage
+          localStorage.setItem("dark-mode", "disabled");
+      }
+  });
+});

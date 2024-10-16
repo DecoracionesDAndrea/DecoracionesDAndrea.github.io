@@ -176,3 +176,63 @@ transform: translateY
     font-size: 20px;
     cursor: pointer;
 }
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.navbar.dark-mode {
+    background-color: #333333;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.btn-dark-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+/* Modo oscuro para containers */
+.container.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Modo oscuro para la barra de navegación y otros elementos */
+.navbar.dark-mode {
+    background-color: #333333;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Modo oscuro para enlaces de navegación */
+.nav-link.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.nav-link.dark-mode:hover {
+    background-color: #444444; /* Color de fondo al pasar el mouse en modo oscuro */
+    color: #f1f1f1;
+}
+
+#btn-contactanos.btn-dark-mode{
+    background-color: #333333; /* Fondo del botón */
+}
+#btn-contactanos.btn-dark-mode:active{
+    background-color: #333333; /* Fondo del botón */
+}
+#btn-contactanos.btn-dark-mode:hover{
+    background-color: #444444; /* Fondo del botón */
+}
+
+.nav-tabs .nav-link.active.dark-mode{
+    background-color: #444444;
+}
