@@ -54,6 +54,7 @@ function cargarFooter() {
     <button id="toggle-dark-mode" class="btn btn-secondary">
       <i id="icon-mode" class="fas fa-moon"></i>
     </button>`
+  
   const navbar = document.querySelector(".navbar-container");
   navbar.insertAdjacentElement("afterend", btnDarkMode);
 
@@ -63,6 +64,8 @@ function cargarFooter() {
 document.addEventListener("DOMContentLoaded", function() {
   var navbarHeight = document.querySelector('.navbar').offsetHeight;
   document.body.style.paddingTop = navbarHeight + 'px';
+  document.getElementById('toggle-dark-mode').style.position = "relative";
+  document.getElementById('toggle-dark-mode').style.marginTop = "0px";
 });
 
 
@@ -107,7 +110,12 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll('.nav-link').forEach(link => {
           link.classList.add("dark-mode");
       });
-
+      document.querySelectorAll('.nav-tabs.nav-link.active').forEach(link => {
+        link.classList.toggle("dark-mode");
+      });
+      document.querySelectorAll('.nav-tabs.nav-link').forEach(link => {
+          link.classList.toggle("dark-mode");
+      });
       // Aplicar dark mode al botón de contactanos
       btnContactanos.classList.add("btn-dark-mode");
 
@@ -128,7 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll('.nav-link').forEach(link => {
           link.classList.toggle("dark-mode");
       });
-      document.querySelectorAll('.nav-tabs .nav-link.active').forEach(link => {
+      document.querySelectorAll('.nav-tabs.nav-link.active').forEach(link => {
+          link.classList.toggle("dark-mode");
+      });
+      document.querySelectorAll('.nav-tabs.nav-link').forEach(link => {
           link.classList.toggle("dark-mode");
       });
 

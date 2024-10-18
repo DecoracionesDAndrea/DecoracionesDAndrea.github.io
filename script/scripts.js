@@ -42,6 +42,15 @@ function handleResize() {
             
             newButton.appendChild(newLink);
             padrebtn.appendChild(newButton); // Agrega el botón de nuevo al DOM
+            const darkMode = localStorage.getItem("dark-mode");
+
+            // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+            if (darkMode === "enabled") {
+                const btnContactanos = document.getElementById("btn-contactanos");
+                if (btnContactanos) {
+                btnContactanos.classList.add("btn-dark-mode"); // Agregar la clase correctamente
+                }
+            }
         }
         if (item) {
             item.remove(); // Elimina el botón del DOM

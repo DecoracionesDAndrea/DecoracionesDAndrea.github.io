@@ -236,3 +236,6 @@ body.dark-mode {
 .nav-tabs .nav-link.active.dark-mode{
     background-color: #444444;
 }
+.nav-tabs.nav-link.dark-mode{
+    background-color: #444444;
+}
