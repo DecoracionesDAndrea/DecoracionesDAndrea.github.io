@@ -111,13 +111,14 @@ document.addEventListener("DOMContentLoaded", function () {
           link.classList.add("dark-mode");
       });
       document.querySelectorAll('.nav-tabs.nav-link.active').forEach(link => {
-        link.classList.toggle("dark-mode");
+        link.classList.add("dark-mode");
       });
       document.querySelectorAll('.nav-tabs.nav-link').forEach(link => {
-          link.classList.toggle("dark-mode");
+          link.classList.add("dark-mode");
       });
       // Aplicar dark mode al botón de contactanos
-      btnContactanos.classList.add("btn-dark-mode");
+      if(btnContactanos)
+        btnContactanos.classList.add("btn-dark-mode");
 
       icon.classList.remove("fa-moon");
       icon.classList.add("fa-sun");
