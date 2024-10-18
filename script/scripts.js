@@ -20,6 +20,15 @@ function handleResize() {
             newLinkItem.appendChild(newLink2);
             padreliitem.appendChild(newLinkItem);
 
+            const darkMode = localStorage.getItem("dark-mode");
+
+            // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+            if (darkMode === "enabled") {
+                let linkContactanos = document.querySelector('#li-contactanos a');
+                if (linkContactanos) {
+                    linkContactanos.classList.add("dark-mode");
+                }
+            }
         }
     } else {
         // Si el botón no está en el DOM, lo recreamos

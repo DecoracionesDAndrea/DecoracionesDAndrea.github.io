@@ -64,8 +64,8 @@ function cargarFooter() {
 document.addEventListener("DOMContentLoaded", function() {
   var navbarHeight = document.querySelector('.navbar').offsetHeight;
   document.body.style.paddingTop = navbarHeight + 'px';
-  document.getElementById('toggle-dark-mode').style.position = "relative";
-  document.getElementById('toggle-dark-mode').style.marginTop = "0px";
+  document.getElementById('toggle-dark-mode').style.position = "absolute";
+  document.getElementById('toggle-dark-mode').style.marginTop = 0 + 'px';
 });
 
 
