@@ -215,9 +215,21 @@ body.dark-mode {
 /* Modo oscuro para enlaces de navegación */
 .nav-link.dark-mode {
     background-color: #333333;
+    /* background-color: none; */
     color: #ffffff;
 }
-
+/*added*/
+#btn-contactanos.nav-link.dark-mode {
+    /* background-color: #333333; */
+    background-color: none;
+    color: #ffffff;
+}
+#btn-contactanos.nav-link {
+    /* background-color: #333333; */
+    background-color: none;
+    color: #ffffff;
+}
+/*added*/
 .nav-link.dark-mode:hover {
     background-color: #444444; /* Color de fondo al pasar el mouse en modo oscuro */
     color: #f1f1f1;
@@ -225,6 +237,7 @@ body.dark-mode {
 
 #btn-contactanos.btn-dark-mode{
     background-color: #333333; /* Fondo del botón */
+    /* background-color: none;  Fondo del botón */
 }
 #btn-contactanos.btn-dark-mode:active{
     background-color: #333333; /* Fondo del botón */
