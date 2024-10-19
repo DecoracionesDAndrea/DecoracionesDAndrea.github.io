@@ -252,3 +252,11 @@ body.dark-mode {
 .nav-tabs.nav-link.dark-mode{
     background-color: #444444;
 }
+
+.breadcrumb-item a.dark-mode {
+    color: #ffffff; /* Color azul predeterminado de Bootstrap */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+.breadcrumb-item a:hover.dark-mode {
+    text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+}
