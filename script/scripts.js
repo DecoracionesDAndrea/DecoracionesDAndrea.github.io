@@ -90,3 +90,45 @@ function sendWhatsAppMessage() {
     var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 }
+
+let intervalId; // Variable para almacenar el ID del intervalo
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        let titleText = "⚠️⚠️ ¡¡Urgente!! ⚠️⚠️";
+        let speed = 300; // Velocidad del movimiento en milisegundos
+        let index = 0;
+
+        // Función para desplazar el título
+        function scrollTitle() {
+            document.title = titleText.slice(index) + titleText.slice(0, index);
+            index = (index + 1) % titleText.length;
+        }
+
+        // Inicia el desplazamiento solo si no hay un intervalo activo
+        if (!intervalId) {
+            intervalId = setInterval(scrollTitle, speed);
+        }
+    } else {
+        // Restaura el título original y detiene el intervalo
+        const path = window.location.pathname;
+        const page = path.split("/").pop(); // Obtiene solo el nombre del archivo (sin la ruta completa)
+
+        // Cambia el título del documento dependiendo del nombre del archivo
+        switch (page) {
+            case "index.html":
+                document.title = "Eventos y Detalles D'Andrea";
+                break;
+            case "nosotros.html":
+                document.title = "Nosotros";
+                break;
+            case "eventos.html":
+                document.title = "Eventos";
+                break;
+            default:
+                document.title = "Eventos y Detalles D'Andrea";
+        }
+        clearInterval(intervalId);
+        intervalId = null; // Resetea el ID del intervalo
+    }
+});
