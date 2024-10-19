@@ -50,11 +50,21 @@ function cargarFooter() {
   document.body.appendChild(backbutton);
 
   var btnDarkMode = document.createElement('div');
-  btnDarkMode.innerHTML = `<!-- Botón para alternar modo oscuro con íconos -->
-    <button id="toggle-dark-mode" class="btn btn-secondary">
-      <i id="icon-mode" class="fas fa-moon"></i>
-    </button>`
   
+  const darkMode = localStorage.getItem("dark-mode");
+
+  // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+  if (darkMode === "enabled") {
+    btnDarkMode.innerHTML = `<!-- Botón para alternar modo oscuro con íconos -->
+      <button id="toggle-dark-mode" class="btn btn-secondary">
+        <i id="icon-mode" class="fas fa-sun"></i>
+      </button>`
+  }else{
+    btnDarkMode.innerHTML = `<!-- Botón para alternar modo oscuro con íconos -->
+      <button id="toggle-dark-mode" class="btn btn-secondary">
+        <i id="icon-mode" class="fas fa-moon"></i>
+      </button>`
+  }
   const navbar = document.querySelector(".navbar-container");
   navbar.insertAdjacentElement("afterend", btnDarkMode);
 
@@ -98,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const darkMode = localStorage.getItem("dark-mode");
 
   // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+  const breadcrumb = document.getElementById("breadcrumb");
   if (darkMode === "enabled") {
       document.body.classList.add("dark-mode");
       document.querySelector('.navbar').classList.add("dark-mode");
@@ -120,10 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
           link.classList.add("dark-mode");
       });
       // Modo oscuro: ícono blanco
-      document.getElementById("breadcrumb").style.setProperty(
-        "--bs-breadcrumb-divider", 
-        "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27white%27/%3E%3C/svg%3E')"
-      );
+      if(breadcrumb){
+        breadcrumb.style.setProperty(
+          "--bs-breadcrumb-divider", 
+          "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27white%27/%3E%3C/svg%3E')"
+        );
+      }
 
       // Aplicar dark mode al botón de contactanos
       if(btnContactanos)
@@ -131,6 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       icon.classList.remove("fa-moon");
       icon.classList.add("fa-sun");
+  }else{
+    //valor por defecto en una primera sesión, sin interacción con botón
+    // Modo claro: ícono negro
+    if(breadcrumb){
+      document.getElementById("breadcrumb").style.setProperty(
+        "--bs-breadcrumb-divider", 
+        "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27black%27/%3E%3C/svg%3E')"
+      );
+    }
   }
 
   // Evento para alternar el modo oscuro
@@ -155,10 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll('.breadcrumb-item a').forEach(link => {
           link.classList.toggle("dark-mode");
       });
-
       
-      
-
       // Alternar dark mode en el botón de contactanos
       btnContactanos.classList.toggle("btn-dark-mode");
 
@@ -166,22 +185,25 @@ document.addEventListener("DOMContentLoaded", function () {
       if (document.body.classList.contains("dark-mode")) {
           icon.classList.remove("fa-moon");
           icon.classList.add("fa-sun");
-          
-          // Modo oscuro: ícono blanco
-          document.getElementById("breadcrumb").style.setProperty(
-            "--bs-breadcrumb-divider", 
-            "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27white%27/%3E%3C/svg%3E')"
-          );
+          if(breadcrumb){
+            // Modo oscuro: ícono blanco
+            breadcrumb.style.setProperty(
+              "--bs-breadcrumb-divider", 
+              "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27white%27/%3E%3C/svg%3E')"
+            );
+          }
           // Guardar el estado del modo oscuro en localStorage
           localStorage.setItem("dark-mode", "enabled");
       } else {
           icon.classList.remove("fa-sun");
           icon.classList.add("fa-moon");
           // Modo claro: ícono negro
-          document.getElementById("breadcrumb").style.setProperty(
-            "--bs-breadcrumb-divider", 
-            "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27black%27/%3E%3C/svg%3E')"
-          );
+          if(breadcrumb){
+            breadcrumb.style.setProperty(
+              "--bs-breadcrumb-divider", 
+              "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27black%27/%3E%3C/svg%3E')"
+            );
+          }
           // Guardar el estado del modo claro en localStorage
           localStorage.setItem("dark-mode", "disabled");
       }
