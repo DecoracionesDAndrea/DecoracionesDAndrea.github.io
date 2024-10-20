@@ -51,7 +51,7 @@ function cargarFooter() {
 
   var btnDarkMode = document.createElement('div');
   
-  const darkMode = localStorage.getItem("dark-mode");
+  const darkMode = sessionStorage.getItem("dark-mode");
 
   // Si el modo oscuro estaba activo, aplicarlo al cargar la página
   if (darkMode === "enabled") {
@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const icon = document.getElementById("icon-mode");
   const btnContactanos = document.getElementById("btn-contactanos");
 
-  // Verificar si el modo oscuro está almacenado en localStorage
-  const darkMode = localStorage.getItem("dark-mode");
+  // Verificar si el modo oscuro está almacenado en sessionStorage
+  const darkMode = sessionStorage.getItem("dark-mode");
 
   // Si el modo oscuro estaba activo, aplicarlo al cargar la página
   const breadcrumb = document.getElementById("breadcrumb");
@@ -192,8 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
               "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27white%27/%3E%3C/svg%3E')"
             );
           }
-          // Guardar el estado del modo oscuro en localStorage
-          localStorage.setItem("dark-mode", "enabled");
+          // Guardar el estado del modo oscuro en sessionStorage
+          sessionStorage.setItem("dark-mode", "enabled");
       } else {
           icon.classList.remove("fa-sun");
           icon.classList.add("fa-moon");
@@ -204,8 +204,8 @@ document.addEventListener("DOMContentLoaded", function () {
               "url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%278%27 height=%278%27%3E%3Cpath d=%27M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z%27 fill=%27black%27/%3E%3C/svg%3E')"
             );
           }
-          // Guardar el estado del modo claro en localStorage
-          localStorage.setItem("dark-mode", "disabled");
+          // Guardar el estado del modo claro en sessionStorage
+          sessionStorage.setItem("dark-mode", "disabled");
       }
   });
 });
