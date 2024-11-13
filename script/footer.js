@@ -32,13 +32,17 @@ function cargarFooter() {
   var whatsappButton = document.createElement('div');
   whatsappButton.innerHTML = `
       <div class="whatsapp-button" onclick="toggleMessageBox()">
-    <img src="../images/wsp-icon-orig.png" alt="WhatsApp" style="position: relative; top: 2.5px; width: 90%; height: 90%;">
-  </div>
+        <img src="../images/wsp-icon-orig.png" alt="WhatsApp" style="width: 90%; height: 90%;">
+      </div>
 
-  <div class="message-box" id="messageBox">
-      <textarea id="whatsappMessage" placeholder="Escribe tu mensaje..."></textarea>
-      <button onclick="sendWhatsAppMessage()">Enviar</button>
-  </div>
+      <div class="message-box" id="messageBox">
+          <textarea id="whatsappMessage" placeholder="Escribe tu mensaje..."></textarea>
+          
+          <button onclick="sendWhatsAppMessage()" id="btn-enviar-wsp">
+          Enviar
+          <i class="fas fa-paper-plane"></i>
+          </button>
+      </div>
   `;
   document.body.appendChild(whatsappButton);
 

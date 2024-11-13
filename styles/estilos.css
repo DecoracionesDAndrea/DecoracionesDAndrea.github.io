@@ -34,7 +34,8 @@ footer{
 }
 
 #btn-contactanos{
-    background-color: #c500e8; /* Fondo del botón */
+    /* background-color: #c500e8; //Fondo del botón */
+    background-color: #570562;
     border: none; /* Sin bordes */
     color: white; /* Color del texto */
     font-size: 16px; /* Tamaño de la fuente */
@@ -195,6 +196,7 @@ body.dark-mode {
 .btn-dark-mode {
     background-color: #ffffff;
     color: #000000;
+
 }
 /* Modo oscuro para containers */
 .container.dark-mode {
@@ -259,4 +261,87 @@ body.dark-mode {
 }
 .breadcrumb-item a:hover.dark-mode {
     text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+}
+
+/* #toggle-dark-mode{
+    z-index: 30000;
+    right: 0px;
+} */
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25D366;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Caja de mensajes */
+.message-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Playwrite DE Grund", cursive;
+}
+
+.message-box textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+.message-box textarea:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+.message-box button {
+    background-color: #25D366;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-box button:hover {
+    background-color: #20b558;
+}
+
+#btn-enviar-wsp{
+    font-family: "Maven Pro", sans-serif;
+    font-size: 16px; /* Tamaño de la fuente */
+    
+    /* font-family: "Playwrite DE Grund", cursive; */
+
+    /* font-family: "Playwrite DE Grund", cursive; */
+
 }
