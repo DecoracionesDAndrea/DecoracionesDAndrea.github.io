@@ -12,8 +12,8 @@ fetch('../script/titulos.json')
   })
   .then(data => {
     titulos = data.titulos;
-    actualizarTitulos();
     llenarTodoInicio();
+    actualizarTitulos();
   })
   .catch(error => {
     console.error('Error:', error);
@@ -51,11 +51,27 @@ function actualizarTitulos() {
     // Obtener el ID de la URL
     const elementosTitulo = document.getElementsByClassName("titulo-card");
     const elementosImagenMain = document.getElementsByClassName("imagen-card");
+    
     // Iteramos sobre los elementos y les asignamos los títulos
+    let imgCard = undefined;
     for (let i = 0; i < elementosTitulo.length; i++) {
         // Verificamos que haya suficientes títulos en el arreglo
         if (i < titulos.length) {
-            elementosTitulo[i].innerText = titulos[i];
+          let hrefTil = elementosTitulo[i].closest('.card').querySelector('a').href;
+        
+          // Usa URLSearchParams para extraer el valor del parámetro 'id'
+          let urlParamsTil = new URLSearchParams(hrefTil.split('?')[1]); 
+          let idcardTil = urlParamsTil.get('id'); // Obtiene el valor del parámetro 'id'
+          
+          // Asigna la nueva fuente de la imagen usando el 'id' extraído
+          if (idcardTil) {
+            elementosTitulo[i].innerText = titulos[idcardTil-1];
+            // imgCard = elementosTitulo[i].closest('.imagen-card');
+            // imgCard.src = './images/card/'+ (i+2) + '.jpeg';
+            // if(imgCard)
+            //   imgCard.src = './images/card/' + idcard + '.jpeg';
+          }
+          //  elementosTitulo[i].innerText = titulos[i];
         } else {
             // Si hay más elementos que títulos, podrías asignar un valor por defecto
             elementosTitulo[i].innerText = "Título no disponible";
@@ -64,12 +80,10 @@ function actualizarTitulos() {
     for (let i = 0; i < elementosImagenMain.length ; i++) {
       //elementosImagenMain[i].src = './images/card/'+ (i+2) + '.jpeg';
       let href = elementosImagenMain[i].closest('.card').querySelector('a').href;
-    
-      // Usa URLSearchParams para extraer el valor del parámetro 'id'
+         // Usa URLSearchParams para extraer el valor del parámetro 'id'
       let urlParams = new URLSearchParams(href.split('?')[1]); 
       let idcard = urlParams.get('id'); // Obtiene el valor del parámetro 'id'
-      
-      // Asigna la nueva fuente de la imagen usando el 'id' extraído
+          // Asigna la nueva fuente de la imagen usando el 'id' extraído
       if (idcard) {
           elementosImagenMain[i].src = './images/card/' + idcard + '.jpeg';
       }
@@ -103,6 +117,7 @@ function filtrarCards() {
     }
   }
   containerBusq.appendChild(row);
+  actualizarTitulos();
 }
 
 buscarInicioBtn.addEventListener("click", filtrarCards);
