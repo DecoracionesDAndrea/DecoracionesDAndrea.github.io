@@ -123,6 +123,13 @@ function filtrarCards() {
   }
   containerBusq.appendChild(row);
   actualizarTitulos();
+  const darkMode = localStorage.getItem("dark-mode");
+  // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+  if (darkMode === "enabled") {
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.add("dark-mode");
+  });
+  }
 }
 
 buscarInicioBtn.addEventListener("click", filtrarCards);
