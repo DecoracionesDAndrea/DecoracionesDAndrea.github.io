@@ -345,3 +345,44 @@ body.dark-mode {
     /* font-family: "Playwrite DE Grund", cursive; */
 
 }
+
+#buscadorContainer {
+    display: flex;
+    gap: 10px;
+    
+  }
+  
+  #buscadorInicio {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  #buscadorInicio:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  #buscarInicioBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #buscarInicioBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  #buscarInicioBtn:focus {
+    outline: none;
+  }
+  

@@ -54,3 +54,31 @@ function actualizarTitulos() {
 
 // Seleccionamos todos los elementos que tienen la clase "titulo"
 
+// Obtén el input, el botón y los párrafos
+const buscarInicioBtn = document.getElementById("buscarInicioBtn");
+const inputBuscadorInicio = document.getElementById("buscadorInicio");
+
+// Función para filtrar los párrafos
+function filtrarCards() {
+  const cards = document.querySelectorAll(".card");
+  const textoBusqueda = inputBuscadorInicio.value.toLowerCase(); // Convierte el texto a minúsculas
+
+  cards.forEach(c => {
+    const tittlecard = c.querySelector('.titulo-card').textContent.toLowerCase();
+    console.log(tittlecard);
+    if (tittlecard.includes(textoBusqueda)) {
+      c.style.display = "block"; // Muestra el párrafo si coincide
+    } else {
+      c.style.display = "none"; // Oculta el párrafo si no coincide
+    }
+  });
+}
+
+buscarInicioBtn.addEventListener("click", filtrarCards);
+
+// Evento para el campo de texto (cuando se presiona Enter)
+inputBuscadorInicio.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    filtrarCards();
+  }
+});
