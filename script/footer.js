@@ -118,7 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector('.navbar').classList.add("dark-mode");
       document.querySelectorAll('.card').forEach(card => {
           card.classList.add("dark-mode");
-      });
+        });
+      
       document.querySelectorAll('.container').forEach(container => {
           container.classList.add("dark-mode");
       });

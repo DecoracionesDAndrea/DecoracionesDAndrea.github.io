@@ -1,3 +1,5 @@
+import { cards } from './cardsarray.js'
+
 let titulos = [];
 
 // Leer el archivo JSON y llenar el arreglo titulos
@@ -11,10 +13,32 @@ fetch('../script/titulos.json')
   .then(data => {
     titulos = data.titulos;
     actualizarTitulos();
+    llenarTodoInicio();
   })
   .catch(error => {
     console.error('Error:', error);
   });
+
+
+function llenarTodoInicio(){
+  const containerBusq = document.getElementById('resultBusquedaInicio');
+  let fila = undefined, cant = 0;
+  console.log(titulos);
+  if(titulos.length > 0){
+    console.log("adad");
+    for(let index = 0; index < titulos.length; index++){
+        if(cant % 3 === 0){
+          if(fila !== undefined)
+            containerBusq.appendChild(fila);
+          fila = document.createElement('div');
+          fila.className = 'row';
+        }
+        fila.insertAdjacentHTML('beforeend', cards[index]);
+        cant++;
+    }
+    containerBusq.appendChild(fila);
+  }
+}
 
 // Función para obtener el id de la URL
 function obtenerID() {
@@ -58,20 +82,27 @@ function actualizarTitulos() {
 const buscarInicioBtn = document.getElementById("buscarInicioBtn");
 const inputBuscadorInicio = document.getElementById("buscadorInicio");
 
+
 // Función para filtrar los párrafos
 function filtrarCards() {
-  const cards = document.querySelectorAll(".card");
+  // const cards = document.querySelectorAll(".card");
   const textoBusqueda = inputBuscadorInicio.value.toLowerCase(); // Convierte el texto a minúsculas
-
-  cards.forEach(c => {
-    const tittlecard = c.querySelector('.titulo-card').textContent.toLowerCase();
-    console.log(tittlecard);
-    if (tittlecard.includes(textoBusqueda)) {
-      c.style.display = "block"; // Muestra el párrafo si coincide
-    } else {
-      c.style.display = "none"; // Oculta el párrafo si no coincide
+  const containerBusq = document.getElementById('resultBusquedaInicio');
+  let cantMostrados = 0, row = undefined;
+  containerBusq.innerHTML = '';
+  for(let index = 0; index < titulos.length; index++){
+    if (titulos[index].toLowerCase().includes(textoBusqueda)) {
+      if(cantMostrados % 3 === 0){
+        if(row !== undefined)
+          containerBusq.appendChild(row);
+        row = document.createElement('div');
+        row.className = 'row';
+      }
+      row.insertAdjacentHTML('beforeend', cards[index]);
+      cantMostrados++;
     }
-  });
+  }
+  containerBusq.appendChild(row);
 }
 
 buscarInicioBtn.addEventListener("click", filtrarCards);
