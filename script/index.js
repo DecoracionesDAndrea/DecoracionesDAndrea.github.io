@@ -23,9 +23,7 @@ fetch('../script/titulos.json')
 function llenarTodoInicio(){
   const containerBusq = document.getElementById('resultBusquedaInicio');
   let fila = undefined, cant = 0;
-  console.log(titulos);
   if(titulos.length > 0){
-    console.log("adad");
     for(let index = 0; index < titulos.length; index++){
         if(cant % 3 === 0){
           if(fila !== undefined)
@@ -37,6 +35,13 @@ function llenarTodoInicio(){
         cant++;
     }
     containerBusq.appendChild(fila);
+  }
+  const darkMode = localStorage.getItem("dark-mode");
+  // Si el modo oscuro estaba activo, aplicarlo al cargar la página
+  if (darkMode === "enabled") {
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.add("dark-mode");
+  });
   }
 }
 

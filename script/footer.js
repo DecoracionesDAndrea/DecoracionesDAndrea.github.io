@@ -110,15 +110,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Verificar si el modo oscuro está almacenado en localStorage
   const darkMode = localStorage.getItem("dark-mode");
-
   // Si el modo oscuro estaba activo, aplicarlo al cargar la página
   const breadcrumb = document.getElementById("breadcrumb");
   if (darkMode === "enabled") {
       document.body.classList.add("dark-mode");
       document.querySelector('.navbar').classList.add("dark-mode");
+
       document.querySelectorAll('.card').forEach(card => {
           card.classList.add("dark-mode");
-        });
+      });
       
       document.querySelectorAll('.container').forEach(container => {
           container.classList.add("dark-mode");
