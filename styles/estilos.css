@@ -368,6 +368,9 @@ body.dark-mode {
   }
   
   #buscarInicioBtn {
+    align-items: center;
+    display: flex;
+    gap: 5px;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
