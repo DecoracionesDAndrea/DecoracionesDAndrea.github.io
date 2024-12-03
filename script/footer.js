@@ -70,6 +70,7 @@ function cargarFooter() {
       </button>`
   }
   const navbar = document.querySelector(".navbar-container");
+  //const navbar = document.querySelector(".navbar-brand");
   navbar.insertAdjacentElement("afterend", btnDarkMode);
 
 

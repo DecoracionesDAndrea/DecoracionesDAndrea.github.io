@@ -121,8 +121,20 @@ function filtrarCards() {
       cantMostrados++;
     }
   }
-  containerBusq.appendChild(row);
+  if(row)
+    containerBusq.appendChild(row);
   actualizarTitulos();
+  console.log(cantMostrados);
+  if(cantMostrados===0){
+    const noResult = document.createElement('div');
+    noResult.innerHTML = `
+    
+    <h2>Sin resultados <i class="fa-solid fa-ghost"></i> </h2>
+    <img src="../images/dou.gif" width="400px" height="400px"> 
+    `;
+
+    containerBusq.appendChild(noResult);
+  }
   const darkMode = localStorage.getItem("dark-mode");
   // Si el modo oscuro estaba activo, aplicarlo al cargar la página
   if (darkMode === "enabled") {

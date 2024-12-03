@@ -263,11 +263,6 @@ body.dark-mode {
     text-decoration: underline; /* Agrega subrayado al pasar el cursor */
 }
 
-/* #toggle-dark-mode{
-    z-index: 30000;
-    right: 0px;
-} */
-
 /* Botón de WhatsApp */
 .whatsapp-button {
     position: fixed;
