@@ -124,13 +124,13 @@ function filtrarCards() {
   if(row)
     containerBusq.appendChild(row);
   actualizarTitulos();
-  console.log(cantMostrados);
   if(cantMostrados===0){
     const noResult = document.createElement('div');
     noResult.innerHTML = `
-    
-    <h2>Sin resultados <i class="fa-solid fa-ghost"></i> </h2>
-    <img src="../images/dou.gif" width="400px" height="400px"> 
+    <div>
+      <h2>Sin resultados <i class="fa-solid fa-ghost"></i> </h2>
+      <img src="../images/dou.gif" width="100%" height="400px"> 
+    </div>
     `;
 
     containerBusq.appendChild(noResult);
