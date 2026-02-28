@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Sketch&display=swap');
+
+.container, body{
+    background-color: white;
+}
+
+.carrousell-text{
+    color: black;
+    font-family: "Playwrite DE Grund", cursive;
+}
+
+.carrousell-tittle{
+    color: black;
+}
+
+footer{
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+
+    /*
+    margin-top: auto; // Empuja el footer al fondo
+    min-height: 100vh; // Altura mínima de la página para ocupar toda la pantalla
+    display: flex;
+    flex-direction: column;
+    */
+} 
+
+.nav-link.active {
+    font-size: 1.15rem;
+}
+
+#btn-contactanos{
+    /* background-color: #c500e8; //Fondo del botón */
+    background-color: #570562;
+    border: none; /* Sin bordes */
+    color: white; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cursor tipo mano al pasar sobre el botón */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px #999; /* Sombra para darle profundidad */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Animaciones suaves */
+      
+}
+
+      
+/* Efecto al pasar el cursor */
+#btn-contactanos:hover {
+background-color: #850097; /* Cambia el color al hacer hover */
+box-shadow: 0 4px #ffffff; /* Mayor sombra al pasar el cursor */
+}
+
+/* Efecto al hacer clic */
+#btn-contactanos:active {
+background-color: #c500e8; /* Cambia el color al hacer clic */
+box-shadow: 0 2px #ff9ff1; /* Sombra más pequeña al hacer clic */
+transform: translateY
+}
+
+.navbar-container, .nav-tabs .nav-link.active, .nav-tabs .nav-link{
+    /* background-color: #1b3039; */
+    background-color: #6c4675;
+    color: white;
+}
+.nav-tabs .nav-link.active{
+    /* background-color: #6c0055; */
+    background-color: #9c78a4;
+}
+.card{
+    background-color: #f6e1ed;
+}
+
+.breadcrumb {
+    background-color: transparent; /* Elimina el fondo por defecto */
+    padding: 0; /* Elimina el padding innecesario */
+}
+.breadcrumb-item a {
+    color: #6c0055; /* Color azul predeterminado de Bootstrap */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+.breadcrumb-item a:hover {
+    text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+}
+.breadcrumb-item.active {
+    color: #6c757d; /* Color para la página actual */
+}
+.breadcrumb-divider::before {
+    content: '>'; /* Cambia el divisor entre elementos */
+    color: #6c757d; /* Color del divisor */
+    margin: 0 5px;
+}
+.parrafo-text{
+    text-align: justify;
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 450;
+    font-style: normal;
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.whatsapp-button a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    line-height: 60px;
+}
+
+/* Estilo del cuadro de texto */
+.message-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-box textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.message-box button {
+    padding: 10px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar-brand{
+    font-family: "Londrina Sketch", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 30px;
+}
+
+
+#btnArriba { 
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 99;
+    background-color: transparent; /* Asegurarse de que el fondo sea transparente */
+    color: white;
+    border: none; /* Sin borde */
+    padding: 1px;
+    border-radius: 80%; /* Borde redondeado */
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.navbar.dark-mode {
+    background-color: #333333;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.btn-dark-mode {
+    background-color: #ffffff;
+    color: #000000;
+
+}
+/* Modo oscuro para containers */
+.container.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Modo oscuro para la barra de navegación y otros elementos */
+.navbar.dark-mode {
+    background-color: #333333;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Modo oscuro para enlaces de navegación */
+.nav-link.dark-mode {
+    background-color: #333333;
+    /* background-color: none; */
+    color: #ffffff;
+}
+/*added*/
+#btn-contactanos.nav-link.dark-mode {
+    /* background-color: #333333; */
+    background-color: none;
+    color: #ffffff;
+}
+#btn-contactanos.nav-link {
+    /* background-color: #333333; */
+    background-color: none;
+    color: #ffffff;
+}
+/*added*/
+.nav-link.dark-mode:hover {
+    background-color: #444444; /* Color de fondo al pasar el mouse en modo oscuro */
+    color: #f1f1f1;
+}
+
+#btn-contactanos.btn-dark-mode{
+    background-color: #333333; /* Fondo del botón */
+    /* background-color: none;  Fondo del botón */
+}
+#btn-contactanos.btn-dark-mode:active{
+    background-color: #333333; /* Fondo del botón */
+}
+#btn-contactanos.btn-dark-mode:hover{
+    background-color: #444444; /* Fondo del botón */
+}
+
+.nav-tabs .nav-link.active.dark-mode{
+    background-color: #444444;
+}
+.nav-tabs.nav-link.dark-mode{
+    background-color: #444444;
+}
+
+.breadcrumb-item a.dark-mode {
+    color: #ffffff; /* Color azul predeterminado de Bootstrap */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+.breadcrumb-item a:hover.dark-mode {
+    text-decoration: underline; /* Agrega subrayado al pasar el cursor */
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25D366;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Caja de mensajes */
+.message-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Playwrite DE Grund", cursive;
+}
+
+.message-box textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+.message-box textarea:focus {
+    outline: none;
+    border-color: #25D366;
+}
+
+.message-box button {
+    background-color: #25D366;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-box button:hover {
+    background-color: #20b558;
+}
+
+#btn-enviar-wsp{
+    font-family: "Maven Pro", sans-serif;
+    font-size: 16px; /* Tamaño de la fuente */
+    
+    /* font-family: "Playwrite DE Grund", cursive; */
+
+    /* font-family: "Playwrite DE Grund", cursive; */
+
+}
+
+#buscadorContainer {
+    display: flex;
+    gap: 10px;
+    
+  }
+  
+  #buscadorInicio {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  #buscadorInicio:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  #buscarInicioBtn {
+    align-items: center;
+    display: flex;
+    gap: 5px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #buscarInicioBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  #buscarInicioBtn:focus {
+    outline: none;
+  }
+  
