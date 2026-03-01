@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 export const Card = ({ id, name, imageUrl }) => {
   return (
     <Link to={`/evento/${id}`} className="block group">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 h-full flex flex-col">
-        <div className="relative overflow-hidden bg-gray-300 h-64">
+      <div className="border-l-4 border-[var(--color-primary)] pl-4 bg-[var(--color-bg-secondary)] rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-l-4 hover:border-[var(--color-secondary)] h-full flex flex-col">
+        <div className="relative overflow-hidden bg-gray-300 dark:bg-gray-700 h-64">
           <img 
             src={imageUrl} 
             alt={name}
@@ -14,8 +14,8 @@ export const Card = ({ id, name, imageUrl }) => {
             }}
           />
         </div>
-        <div className="p-4 flex-1 flex items-center justify-center">
-          <h3 className="text-lg font-semibold text-gray-800 text-center line-clamp-2 group-hover:text-blue-900 transition-colors">
+        <div className="border-t border-[var(--color-border)] p-4 flex-1 flex items-center justify-center">
+          <h3 className="text-lg font-semibold text-[var(--color-text)] text-center line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
             {name || 'Evento sin nombre'}
           </h3>
         </div>

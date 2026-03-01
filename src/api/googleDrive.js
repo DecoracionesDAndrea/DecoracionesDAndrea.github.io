@@ -1,36 +1,33 @@
-const FOLDER_ID = import.meta.env.VITE_DRIVE_FOLDER_ID;
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-
-// Datos de ejemplo para desarrollo
-const EJEMPLO_EVENTOS = [
-  { id: '1', name: 'Boda en la Playa.jpg' },
-  { id: '2', name: 'Cumpleaños 15 Años.jpg' },
-  { id: '3', name: 'Aniversario Dorado.jpg' },
-  { id: '4', name: 'Fiesta de Graduación.jpg' },
-  { id: '5', name: 'Decoración Navideña.jpg' },
-  { id: '6', name: 'Bautizo Elegante.jpg' },
-];
+const FOLDER_ID = '17JmBJicJCXvo28yABnLmJ_joDHq5xe9b';
+const API_KEY = 'AIzaSyD2pXYJFlu73Pd2QXNLT-CXw_5erDBThP8';
 
 export const fetchEventos = async () => {
-  // Si no hay API Key configurada, devuelve datos de ejemplo
   if (!API_KEY || !FOLDER_ID) {
-    console.warn('⚠️ Google Drive API no configurada. Usando datos de ejemplo.');
-    return EJEMPLO_EVENTOS;
+    console.warn('⚠️ Google Drive API no configurada.');
+    return [];
   }
 
   try {
-    const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parent&fields=files(id,name)&key=${API_KEY}`;
+    const query = `'${FOLDER_ID}' in parents and trashed = false and mimeType contains 'image/'`;
+    const fields = 'files(id, name)';
+    const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=${encodeURIComponent(fields)}&key=${API_KEY}`;
+    
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (data.error) {
       console.error('Error en Google Drive API:', data.error);
-      return EJEMPLO_EVENTOS;
+      return [];
     }
     
-    return data.files || EJEMPLO_EVENTOS;
+    return data.files.map(file => ({
+      id: file.id,
+      name: file.name,
+      // Usamos el thumbnailLink pero cambiamos el tamaño final (s2000) para que se vea en alta calidad
+      url: `https://lh3.googleusercontent.com/u/0/d/${file.id}=w1000-h1000`
+    }));
   } catch (error) {
     console.error('Error fetching eventos:', error);
-    return EJEMPLO_EVENTOS;
+    return [];
   }
 };

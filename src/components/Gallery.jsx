@@ -28,8 +28,8 @@ export const Gallery = () => {
     return (
       <div className="flex justify-center items-center min-h-96">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mb-4"></div>
-          <p className="text-xl text-gray-600">Cargando eventos...</p>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: 'var(--color-primary)' }}></div>
+          <p className="text-xl text-[var(--color-text-secondary)] mt-4">Cargando eventos...</p>
         </div>
       </div>
     );
@@ -46,7 +46,7 @@ export const Gallery = () => {
   if (!eventos || eventos.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-96">
-        <p className="text-xl text-gray-600">No hay eventos disponibles</p>
+        <p className="text-xl text-[var(--color-text-secondary)]">No hay eventos disponibles</p>
       </div>
     );
   }
@@ -59,7 +59,7 @@ export const Gallery = () => {
             key={archivo.id}
             id={archivo.id}
             name={archivo.name.replace(/\.[^/.]+$/, "")}
-            imageUrl={`https://drive.google.com/uc?export=view&id=${archivo.id}`}
+            imageUrl={`https://lh3.googleusercontent.com/d/${archivo.id}`}
           />
         ))}
       </div>

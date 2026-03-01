@@ -11,15 +11,15 @@ export const EventDetail = () => {
   }, [id]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="bg-white shadow">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      <div className="bg-[var(--color-bg-secondary)] shadow border-b border-[var(--color-border)]">
         <div className="container mx-auto px-4 py-4">
-          <Link to="/" className="text-blue-900 hover:underline">← Volver</Link>
+          <Link to="/" className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition underline font-semibold">← Volver</Link>
         </div>
       </div>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-[var(--color-bg-secondary)] rounded-lg shadow-lg p-8 border-l-4 border-[var(--color-primary)]">
           <div className="mb-6">
             <img 
               src={`https://drive.google.com/uc?export=view&id=${id}`} 
@@ -29,9 +29,9 @@ export const EventDetail = () => {
           </div>
 
           <div className="mt-8">
-            <h1 className="text-4xl font-bold text-blue-900 mb-4">Detalles del Evento</h1>
-            <p className="text-gray-600 mb-4">ID del evento: {id}</p>
-            <p className="text-gray-700 leading-relaxed">
+            <h1 className="text-4xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>Detalles del Evento</h1>
+            <p className="text-[var(--color-text-secondary)] mb-4">ID del evento: {id}</p>
+            <p className="text-[var(--color-text)] leading-relaxed">
               Aquí puedes agregar más información sobre este evento, como descripción,
               detalles de decoración, contacto, etc.
             </p>
