@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { Sun, Moon } from 'lucide-react';
 
 const tabs = [
   { label: 'Inicio', to: '/', type: 'link' },
@@ -31,13 +32,13 @@ export const Navbar = () => {
   }, [activeTab]);
 
   return (
-    <nav className="bg-[var(--color-primary)] text-white sticky top-0 z-50 shadow-lg transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-stretch w-full min-h-[72px]">
-
+    <>
+      <nav className="bg-[var(--color-primary)] text-white fixed top-0 w-full z-50 shadow-lg transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-stretch w-full h-[72px]">
         {/* 1. Logo */}
         <div className="flex flex-1 items-center">
           <Link to="/" className="flex items-center gap-2 py-6 hover:opacity-80 transition shrink-0">
-            <span className="text-xl text-[var(--color-bg)] font-bold tracking-tight">
+            <span className="rammetto-one-regular text-xl text-[var(--color-bg)]  tracking-tight">
               🎉 Decoraciones Andrea
             </span>
           </Link>
@@ -96,15 +97,19 @@ export const Navbar = () => {
 
         {/* 3. Theme Toggle */}
         <div className="flex flex-1 justify-end items-center">
-          <button
+          <div
             onClick={toggleTheme}
-            className="text-2xl hover:scale-125 transition-transform duration-200 p-2"
+            className="cursor-pointer hover:scale-125 transition-transform duration-200 p-2"
           >
-            {isDark ? '☀️' : '🌙'}
-          </button>
+            {isDark ? <Sun size={28} /> : <Moon size={28} />}
+          </div>
         </div>
 
       </div>
-    </nav>
+      </nav>
+
+      {/* Spacer para compensar el navbar fixed */}
+      <div className="h-[72px]" />
+    </>
   );
 };

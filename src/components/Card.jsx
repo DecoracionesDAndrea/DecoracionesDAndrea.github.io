@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 
 export const Card = ({ id, name, imageUrl }) => {
   return (
-    <Link to={`/evento/${id}`} className="block group">
+    // 1. Añadimos w-full y una altura fija total (ej. h-[380px])
+    <Link to={`/evento/${id}`} className="block group w-full h-[380px]">
       <div className="border-l-4 border-[var(--color-primary)] pl-4 bg-[var(--color-bg-secondary)] rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-l-4 hover:border-[var(--color-secondary)] h-full flex flex-col">
-        <div className="relative overflow-hidden bg-gray-300 dark:bg-gray-700 h-64">
+        
+        {/* 2. Añadimos shrink-0 para evitar que flexbox encoja la imagen si el texto es largo */}
+        <div className="relative overflow-hidden bg-gray-300 dark:bg-gray-700 h-64 shrink-0">
           <img 
             src={imageUrl} 
             alt={name}
@@ -14,6 +17,8 @@ export const Card = ({ id, name, imageUrl }) => {
             }}
           />
         </div>
+        
+        {/* 3. flex-1 hace que este div rellene el espacio exacto que sobra hasta los 380px */}
         <div className="border-t border-[var(--color-border)] p-4 flex-1 flex items-center justify-center">
           <h3 className="text-lg font-semibold text-[var(--color-text)] text-center line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
             {name || 'Evento sin nombre'}

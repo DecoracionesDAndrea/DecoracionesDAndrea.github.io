@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchEventos } from '../api/googleDrive';
 
 export const Gallery = () => {
+  const navigate = useNavigate();
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // 1. Nuevo estado para rastrear la imagen actual
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const loadEventos = async () => {
@@ -22,6 +27,26 @@ export const Gallery = () => {
 
     loadEventos();
   }, []);
+
+  // 2. Efecto para escuchar las flechas del teclado
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault(); // Evita que la página haga scroll
+        // Avanza 1, pero no se pasa del último
+        setCurrentIndex((prev) => Math.min(prev + 1, eventos.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault(); // Evita que la página haga scroll
+        // Retrocede 1, pero no baja de 0
+        setCurrentIndex((prev) => Math.max(prev - 1, 0));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    
+    // Limpieza del evento al desmontar el componente
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [eventos.length]);
 
   if (loading) {
     return (
@@ -50,35 +75,58 @@ export const Gallery = () => {
     );
   }
 
+  const handleImageClick = (id) => {
+    navigate(`/evento/${id}`);
+  };
+
+  // 3. Obtenemos solo el archivo que corresponde al índice actual
+  const archivoActual = eventos[currentIndex];
+
   return (
-    <div id="galeria" className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-12">
-        {eventos.map((archivo) => (
-          <div key={archivo.id} className="group flex flex-col">
-            {/* Tile de imagen */}
-            <div className="relative overflow-hidden cursor-pointer transition-all duration-200 hover:scale-95 active:scale-90 h-64 bg-gray-300 dark:bg-gray-700 rounded-lg shadow-md">
-              <img
-                src={`https://lh3.googleusercontent.com/d/${archivo.id}`}
-                alt={archivo.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
+    // Contenedor centrado que ocupa casi toda la altura de la pantalla
+    <div id="galeria" className="w-full min-h-[calc(100vh-100px)] flex flex-col items-center justify-center p-4">
+      
+      {/* Tarjeta única limitada en ancho (max-w-3xl) para que no se vea gigante en PC */}
+      <div 
+        key={archivoActual.id} 
+        onClick={() => handleImageClick(archivoActual.id)}
+        className="group w-full max-w-3xl flex flex-col cursor-pointer bg-[var(--color-bg-secondary)] rounded-lg shadow-2xl border border-[var(--color-border)] overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:border-[var(--color-secondary)]"
+      >
+        
+        {/* Contenedor de la imagen sin altura fija */}
+        <div className="relative w-full bg-gray-300 dark:bg-gray-700 flex justify-center">
+          
+          {/* Etiqueta img intacta tal cual la enviaste */}
+          <img
+            src={`https://lh3.googleusercontent.com/d/${archivoActual.id}`}
+            alt={archivoActual.name}
+            // w-full toma todo el ancho posible
+            // h-auto permite que la altura se calcule sola según la proporción
+            // object-contain asegura que la imagen nunca se mutile
+            className="w-full h-auto max-h-[70vh] object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
 
-              {/* Overlay oscuro sutil en hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200" />
-            </div>
+          {/* Overlay oscuro sutil en hover */}
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200" />
+        </div>
 
-            {/* Pie de imagen - Card style */}
-            <div className="mt-3 bg-[var(--color-bg-secondary)] rounded-lg p-4 shadow-sm border border-[var(--color-border)]">
-              <h3 className="text-[var(--color-text)] font-semibold text-sm md:text-base line-clamp-2 text-center group-hover:text-[var(--color-primary)] transition-colors">
-                {archivo.name.replace(/\.[^/.]+$/, '') || 'Imagen'}
-              </h3>
-            </div>
-          </div>
-        ))}
+        {/* Pie de imagen perfectamente pegado */}
+        <div className="p-4 w-full border-t border-[var(--color-border)]">
+          <h3 className="text-[var(--color-text)] font-bold text-lg md:text-xl line-clamp-2 text-center group-hover:text-[var(--color-primary)] transition-colors">
+            {archivoActual.name.replace(/\.[^/.]+$/, '') || 'Imagen'}
+          </h3>
+        </div>
       </div>
+
+      {/* Indicador visual opcional de navegación */}
+      <div className="mt-6 text-center text-[var(--color-text-secondary)] font-medium">
+        <p>Usa las flechas ⬆️ ⬇️ para navegar</p>
+        <p className="mt-1 text-sm">{currentIndex + 1} de {eventos.length}</p>
+      </div>
+
     </div>
   );
 };

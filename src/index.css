@@ -1,23 +1,12 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Honk:MORF@15&family=Lobster&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
-
-
-.vend-sans-regular {
-  font-family: "Vend Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.lobster-regular {
-  font-family: "Lobster", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
 
 /* TEMA LIGHT - LILA */
 :root {
@@ -41,6 +30,10 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-4xl: 2.25rem;
+  
+  /* Variables de galería */
+  --gallery-image-height: 36rem; /* 192px / h-48 */
+  --gallery-gap: 1.5rem; /* gap-10 */
 }
 
 /* TEMA DARK */
@@ -98,4 +91,35 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
+}
+
+.vend-sans-regular {
+  font-family: "Vend Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.honk-regular {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+.rammetto-one-regular {
+  font-family: "Rammetto One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
 }

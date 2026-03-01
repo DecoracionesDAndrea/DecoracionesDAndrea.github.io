@@ -12,9 +12,17 @@ export const EventDetail = () => {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      {/* Breadcrumb */}
       <div className="bg-[var(--color-bg-secondary)] shadow border-b border-[var(--color-border)]">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/" className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition underline font-semibold">← Volver</Link>
+        <div className="container mx-auto px-4 py-8">
+          <nav className="flex items-center gap-2">
+            <Link 
+              to="/" 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-all duration-200 font-semibold"
+            >
+              <span>←</span> Volver a Galería
+            </Link>
+          </nav>
         </div>
       </div>
 
