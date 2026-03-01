@@ -25,7 +25,7 @@ function App() {
         <Route path="/" element={
           <>
             <header className="w-full bg-[var(--color-bg-secondary)] shadow py-10 text-center border-b border-[var(--color-border)]">
-              <h1 className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--color-primary)' }}>Decoraciones D'Andrea</h1>
+              <h1 className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--color-primary)' }}>Decoraciones Andrea</h1>
               <p className="mt-2 text-[var(--color-text-secondary)] text-lg">Transformando tus momentos en recuerdos inolvidables</p>
             </header>
             
@@ -39,7 +39,7 @@ function App() {
       </Routes>
 
       <footer className="mt-auto w-full py-8 text-center border-t border-[var(--color-border)]" style={{ backgroundColor: 'var(--color-primary)', color: '#fff' }}>
-        <p>&copy; 2026 Decoraciones D'Andrea - Hecho con React + Vite</p>
+        <p>&copy; 2026 Decoraciones Andrea</p>
       </footer>
     </div>
   );

@@ -53,7 +53,7 @@ export const Gallery = () => {
 
   return (
     <div className="w-full">
-      <div id="galeria" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-12">
+      <div id="galeria" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-12">
         {eventos.map(archivo => (
           <Card
             key={archivo.id}
