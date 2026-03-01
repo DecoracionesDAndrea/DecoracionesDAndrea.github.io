@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 const tabs = [
   { label: 'Inicio', to: '/', type: 'link' },
   { label: 'Galería', href: '#galeria', type: 'anchor' },
-  { label: 'Ubícanos', href: '#ubicacion', type: 'anchor' },
+  { label: 'Ubícanos', href: '#ubicacion', type: 'anchor' }
 ];
 
 export const Navbar = () => {
@@ -36,9 +36,9 @@ export const Navbar = () => {
 
         {/* 1. Logo */}
         <div className="flex flex-1 items-center">
-          <Link to="/" className="flex items-center gap-2-6 hover:opacity-80 transition shrink-0">
-            <span className="text-xl text-[var(--color-bg)] lobster-regular tracking-tight">
-              Decoraciones Andrea
+          <Link to="/" className="flex items-center gap-2 py-6 hover:opacity-80 transition shrink-0">
+            <span className="text-xl text-[var(--color-bg)] font-bold tracking-tight">
+              🎉 Decoraciones Andrea
             </span>
           </Link>
         </div>
@@ -48,7 +48,7 @@ export const Navbar = () => {
 
           {tabs.map((tab, i) => {
             const isActive = activeTab === i;
-            const cls = `flex items-center px-6 py-6 vend-sans-regular transition-colors duration-200 whitespace-nowrap ${
+            const cls = `flex items-center px-6 py-6 font-semibold transition-colors duration-200 whitespace-nowrap ${
               isActive
                 ? 'text-[var(--color-secondary-light)]'
                 : 'text-[var(--color-bg)] hover:text-[var(--color-secondary-light)]'
@@ -79,10 +79,10 @@ export const Navbar = () => {
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/998805588?text=Hola%20Decoraciones%20Andrea%2C%20me%20gustaría%20saber%20más%20sobre%20sus%20decoraciones."
+            href="https://wa.me/TUNUMERO"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center bg-green-500 px-6 py-2 my-auto text-[var(--color-bg)] rounded-full vend-sans-regular hover:bg-green-600 hover:scale-105 transition-all duration-200 whitespace-nowrap"
+            className="flex items-center bg-green-500 px-6 py-2 my-auto text-[var(--color-bg)] rounded-full font-bold hover:bg-green-600 hover:scale-105 transition-all duration-200 whitespace-nowrap"
           >
             WhatsApp
           </a>
