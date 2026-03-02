@@ -11,23 +11,37 @@ import './index.css';
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+  /* MODO OSCURO (Por defecto) */
   .app-root {
-    --bg: #0d0d0f;
-    --bg2: #131316;
-    --bg3: #1a1a1f;
-    --border: rgba(255,255,255,0.07);
-    --accent: #f5c842;
-    --accent2: #ff6b35;
-    --text: #f0ede8;
-    --text2: rgba(240,237,232,0.45);
-    --text3: rgba(240,237,232,0.2);
+    --bg: #0f0a1f;        
+    --bg2: #18112e;       
+    --bg3: #231942;       
+    --border: rgba(168, 85, 247, 0.15); 
+    --accent: #c084fc;    
+    --text: #fdfaef;      
+    --text2: rgba(253, 250, 239, 0.65);
+    --text3: rgba(253, 250, 239, 0.3);
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* MODO CLARO */
+  .app-root.light {
+    --bg: #fdfcff;        
+    --bg2: #ffffff;       
+    --bg3: #f3e8ff;       
+    --border: rgba(147, 51, 234, 0.15); 
+    --accent: #9333ea;    
+    --text: #2e1065;      
+    --text2: rgba(46, 16, 101, 0.65);
+    --text3: rgba(46, 16, 101, 0.3);
+  }
+
   .app-root * { box-sizing: border-box; }
 
   .app-hero {
@@ -36,6 +50,7 @@ const styles = `
     border-bottom: 1px solid var(--border);
     padding: 40px 24px 36px;
     text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .app-hero h1 {
     font-family: 'Syne', sans-serif;
@@ -44,14 +59,19 @@ const styles = `
     letter-spacing: -0.04em;
     color: var(--text);
     margin: 0 0 8px;
+    transition: color 0.3s ease;
   }
-  .app-hero h1 span { color: var(--accent); }
+  .app-hero h1 span { 
+    color: var(--accent); 
+    transition: color 0.3s ease;
+  }
   .app-hero p {
     font-size: clamp(0.9rem, 2vw, 1.05rem);
     color: var(--text2);
     margin: 0;
     font-weight: 300;
     font-style: italic;
+    transition: color 0.3s ease;
   }
 
   .app-main {
@@ -72,6 +92,7 @@ const styles = `
     align-items: center;
     justify-content: center;
     gap: 6px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .app-footer p {
     margin: 0;
@@ -80,19 +101,24 @@ const styles = `
     letter-spacing: 0.06em;
     font-weight: 500;
     text-transform: uppercase;
+    transition: color 0.3s ease;
   }
-  .app-footer span { color: var(--accent); }
+  .app-footer span { 
+    color: var(--accent); 
+    transition: color 0.3s ease;
+  }
 `;
 
 function App() {
   const { isDark } = useTheme();
 
+  // Mantenemos el toggle en el documentElement para Tailwind (si lo usas en otros lados)
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 
   return (
-    <div className="app-root">
+    <div className={`app-root ${isDark ? '' : 'light'}`}>
       <style>{styles}</style>
       <Navbar />
 

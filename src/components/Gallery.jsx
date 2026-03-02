@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchEventos } from '../api/googleDrive';
+import { useTheme } from '../context/ThemeContext'; // <-- Importamos el tema
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+  /* MODO OSCURO */
   .gl-root {
-    --bg: #0d0d0f;
-    --bg2: #131316;
-    --bg3: #1a1a1f;
-    --border: rgba(255,255,255,0.07);
-    --accent: #f5c842;
-    --accent2: #ff6b35;
-    --text: #f0ede8;
-    --text2: rgba(240,237,232,0.45);
-    --text3: rgba(240,237,232,0.2);
+    --bg: #0f0a1f;        
+    --bg2: #18112e;       
+    --bg3: #231942;       
+    --border: rgba(168, 85, 247, 0.15); 
+    --accent: #c084fc;    
+    --accent2: #e879f9;   
+    --text: #fdfaef;      
+    --text2: rgba(253, 250, 239, 0.65);
+    --text3: rgba(253, 250, 239, 0.3);
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     min-height: calc(100vh - 100px);
@@ -25,7 +27,22 @@ const styles = `
     align-items: center;
     justify-content: center;
     padding: 24px 16px 40px;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* MODO CLARO */
+  .gl-root.light {
+    --bg: #fdfcff;        
+    --bg2: #ffffff;       
+    --bg3: #f3e8ff;       
+    --border: rgba(147, 51, 234, 0.15); 
+    --accent: #9333ea;    
+    --accent2: #d946ef;   
+    --text: #2e1065;      
+    --text2: rgba(46, 16, 101, 0.65);
+    --text3: rgba(46, 16, 101, 0.3);
+  }
+
   .gl-root * { box-sizing: border-box; }
 
   /* Card */
@@ -38,7 +55,7 @@ const styles = `
     border: 1px solid var(--border);
     cursor: pointer;
     position: relative;
-    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2), border-color 0.2s, box-shadow 0.28s;
+    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2), border-color 0.3s ease, box-shadow 0.28s, background-color 0.3s ease;
     animation: cardIn 0.32s cubic-bezier(.22,.68,0,1.2);
   }
   @keyframes cardIn {
@@ -47,7 +64,7 @@ const styles = `
   }
   .gl-card:hover {
     transform: translateY(-3px) scale(1.01);
-    border-color: rgba(245,200,66,0.18);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
     box-shadow: 0 24px 56px rgba(0,0,0,0.55);
   }
   .gl-card:active { transform: scale(0.98); }
@@ -62,6 +79,7 @@ const styles = `
     justify-content: center;
     overflow: hidden;
     max-height: 65vh;
+    transition: background-color 0.3s ease;
   }
   .gl-img-wrap img {
     width: 100%;
@@ -83,11 +101,11 @@ const styles = `
   .gl-card:hover .gl-img-overlay {
     background: rgba(0,0,0,0.15);
   }
-  /* Gold bottom accent line */
+  /* Gradient bottom accent line */
   .gl-img-line {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 2px;
+    height: 3px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     opacity: 0;
     transition: opacity 0.25s;
@@ -102,6 +120,7 @@ const styles = `
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    transition: border-color 0.3s ease;
   }
   .gl-name {
     font-family: 'Syne', sans-serif;
@@ -114,7 +133,7 @@ const styles = `
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    transition: color 0.18s;
+    transition: color 0.3s ease;
   }
   .gl-card:hover .gl-name { color: var(--accent); }
   .gl-counter-pill {
@@ -128,8 +147,9 @@ const styles = `
     color: var(--text3);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.04em;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
-  .gl-counter-pill span { color: var(--accent); }
+  .gl-counter-pill span { color: var(--accent); transition: color 0.3s ease; }
 
   /* Controls row */
   .gl-controls {
@@ -158,28 +178,25 @@ const styles = `
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: border-color 0.18s, color 0.18s, background 0.18s, transform 0.12s;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease, transform 0.12s;
     flex-shrink: 0;
   }
-  .gl-nav-btn:hover:not(:disabled) {
+  .gl-nav-btn:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(245,200,66,0.06);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
     transform: translateY(-1px);
   }
-  .gl-nav-btn:active:not(:disabled) { transform: scale(0.93); }
-  .gl-nav-btn:disabled {
-    opacity: 0.25;
-    cursor: not-allowed;
-  }
+  .gl-nav-btn:active { transform: scale(0.93); }
 
   /* Progress bar */
   .gl-progress-wrap {
     flex: 1;
-    height: 3px;
+    height: 4px;
     background: var(--bg3);
     border-radius: 2px;
     overflow: hidden;
+    transition: background-color 0.3s ease;
   }
   .gl-progress-bar {
     height: 100%;
@@ -201,7 +218,7 @@ const styles = `
     background: var(--border);
     border: none;
     cursor: pointer;
-    transition: width 0.22s cubic-bezier(.4,0,.2,1), background 0.18s;
+    transition: width 0.22s cubic-bezier(.4,0,.2,1), background-color 0.3s ease;
     padding: 0;
     width: 6px;
   }
@@ -220,6 +237,7 @@ const styles = `
     color: var(--text3);
     letter-spacing: 0.04em;
     margin-top: 2px;
+    transition: color 0.3s ease;
   }
 
   /* States */
@@ -241,11 +259,12 @@ const styles = `
     animation: spin 0.7s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .gl-state p { font-size: 0.85rem; color: var(--text3); margin: 0; }
+  .gl-state p { font-size: 0.85rem; color: var(--text3); margin: 0; transition: color 0.3s ease; }
 `;
 
 export const Gallery = () => {
   const navigate = useNavigate();
+  const { isDark } = useTheme(); // <-- Obtenemos el tema
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -268,14 +287,15 @@ export const Gallery = () => {
     loadEventos();
   }, []);
 
+  // Navegación cíclica con TECLADO
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault();
-        setCurrentIndex((p) => Math.min(p + 1, eventos.length - 1));
+        setCurrentIndex((p) => (p + 1) % eventos.length);
       } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault();
-        setCurrentIndex((p) => Math.max(p - 1, 0));
+        setCurrentIndex((p) => (p - 1 + eventos.length) % eventos.length);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -283,16 +303,18 @@ export const Gallery = () => {
   }, [eventos.length]);
 
   const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
+  
+  // Navegación cíclica en MÓVIL (Touch/Swipe)
   const handleTouchEnd = (e) => {
     const end = e.changedTouches[0].clientX;
     setTouchEnd(end);
     const dist = touchStart - end;
-    if (dist > 50) setCurrentIndex((p) => Math.min(p + 1, eventos.length - 1));
-    if (dist < -50) setCurrentIndex((p) => Math.max(p - 1, 0));
+    if (dist > 50) setCurrentIndex((p) => (p + 1) % eventos.length);
+    if (dist < -50) setCurrentIndex((p) => (p - 1 + eventos.length) % eventos.length);
   };
 
   if (loading) return (
-    <div className="gl-root"><style>{styles}</style>
+    <div className={`gl-root ${isDark ? '' : 'light'}`}><style>{styles}</style>
       <div className="gl-state">
         <div className="gl-spinner" />
         <p>Cargando galería...</p>
@@ -301,7 +323,7 @@ export const Gallery = () => {
   );
 
   if (error) return (
-    <div className="gl-root"><style>{styles}</style>
+    <div className={`gl-root ${isDark ? '' : 'light'}`}><style>{styles}</style>
       <div className="gl-state">
         <p style={{ color: '#ff6b6b' }}>Error: {error}</p>
       </div>
@@ -309,7 +331,7 @@ export const Gallery = () => {
   );
 
   if (!eventos.length) return (
-    <div className="gl-root"><style>{styles}</style>
+    <div className={`gl-root ${isDark ? '' : 'light'}`}><style>{styles}</style>
       <div className="gl-state">
         <p>No hay eventos disponibles</p>
       </div>
@@ -320,7 +342,7 @@ export const Gallery = () => {
   const progress = ((currentIndex + 1) / eventos.length) * 100;
 
   return (
-    <div className="gl-root">
+    <div className={`gl-root ${isDark ? '' : 'light'}`}>
       <style>{styles}</style>
 
       {/* Card */}
@@ -358,10 +380,10 @@ export const Gallery = () => {
 
         {/* Nav + progress */}
         <div className="gl-nav">
+          {/* Navegación cíclica con BOTÓN ANTERIOR */}
           <button
             className="gl-nav-btn"
-            onClick={() => setCurrentIndex((p) => Math.max(p - 1, 0))}
-            disabled={currentIndex === 0}
+            onClick={() => setCurrentIndex((p) => (p - 1 + eventos.length) % eventos.length)}
             aria-label="Anterior"
           >
             <ChevronLeft size={20} />
@@ -371,10 +393,10 @@ export const Gallery = () => {
             <div className="gl-progress-bar" style={{ width: `${progress}%` }} />
           </div>
 
+          {/* Navegación cíclica con BOTÓN SIGUIENTE */}
           <button
             className="gl-nav-btn"
-            onClick={() => setCurrentIndex((p) => Math.min(p + 1, eventos.length - 1))}
-            disabled={currentIndex === eventos.length - 1}
+            onClick={() => setCurrentIndex((p) => (p + 1) % eventos.length)}
             aria-label="Siguiente"
           >
             <ChevronRight size={20} />

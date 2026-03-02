@@ -1,26 +1,41 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchEventos } from '../api/googleDrive';
+import { useTheme } from '../context/ThemeContext'; // <-- Importamos el tema
 import { Search as SearchIcon, X, Grid2x2, Grid3x3, Grid } from 'lucide-react';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+  /* MODO OSCURO */
   .search-root {
-    --bg: #0d0d0f;
-    --bg2: #131316;
-    --bg3: #1a1a1f;
-    --border: rgba(255,255,255,0.07);
-    --border-focus: rgba(255,200,80,0.5);
-    --accent: #f5c842;
-    --accent2: #ff6b35;
-    --text: #f0ede8;
-    --text2: rgba(240,237,232,0.45);
-    --text3: rgba(240,237,232,0.25);
+    --bg: #0f0a1f;        
+    --bg2: #18112e;       
+    --bg3: #231942;       
+    --border: rgba(168, 85, 247, 0.15);
+    --border-focus: rgba(192, 132, 252, 0.5); 
+    --accent: #c084fc;    
+    --text: #fdfaef;      
+    --text2: rgba(253, 250, 239, 0.65);
+    --text3: rgba(253, 250, 239, 0.3);
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     min-height: 100vh;
     color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* MODO CLARO */
+  .search-root.light {
+    --bg: #fdfcff;        
+    --bg2: #ffffff;       
+    --bg3: #f3e8ff;       
+    --border: rgba(147, 51, 234, 0.15); 
+    --border-focus: rgba(147, 51, 234, 0.5);
+    --accent: #9333ea;    
+    --text: #2e1065;      
+    --text2: rgba(46, 16, 101, 0.65);
+    --text3: rgba(46, 16, 101, 0.3);
   }
 
   .search-root * { box-sizing: border-box; }
@@ -33,6 +48,7 @@ const styles = `
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .sh-inner {
     max-width: 1280px;
@@ -52,9 +68,11 @@ const styles = `
     display: flex;
     align-items: center;
     gap: 10px;
+    transition: color 0.3s ease;
   }
   .sh-title span {
     color: var(--accent);
+    transition: color 0.3s ease;
   }
 
   /* Search bar */
@@ -79,6 +97,7 @@ const styles = `
     width: 20px;
     height: 20px;
     z-index: 1;
+    transition: color 0.3s ease;
   }
   .sb-input {
     width: 100%;
@@ -91,15 +110,16 @@ const styles = `
     font-size: 0.95rem;
     font-weight: 400;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s, color 0.3s ease;
     line-height: 1.4;
   }
   .sb-input::placeholder {
     color: var(--text3);
+    transition: color 0.3s ease;
   }
   .sb-input:focus {
     border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px rgba(245,200,66,0.08);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
   }
   .sb-clear {
     position: absolute;
@@ -111,16 +131,16 @@ const styles = `
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.06);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     color: var(--text2);
-    transition: background 0.15s, color 0.15s;
+    transition: background-color 0.2s, color 0.2s;
     flex-shrink: 0;
   }
   .sb-clear:hover {
-    background: rgba(245,200,66,0.15);
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
     color: var(--accent);
   }
 
@@ -138,6 +158,7 @@ const styles = `
     letter-spacing: 0.04em;
     text-transform: uppercase;
     font-weight: 500;
+    transition: color 0.3s ease;
   }
   .sh-count strong {
     color: var(--accent);
@@ -155,6 +176,7 @@ const styles = `
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-right: 2px;
+    transition: color 0.3s ease;
   }
   .col-btn {
     width: 32px;
@@ -167,16 +189,16 @@ const styles = `
     background: transparent;
     cursor: pointer;
     color: var(--text2);
-    transition: all 0.15s;
+    transition: all 0.2s;
   }
   .col-btn:hover {
-    border-color: rgba(245,200,66,0.3);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
     color: var(--text);
   }
   .col-btn.active {
     background: var(--accent);
     border-color: var(--accent);
-    color: #0d0d0f;
+    color: #ffffff;
   }
 
   /* Main */
@@ -207,6 +229,7 @@ const styles = `
     justify-content: center;
     color: var(--text3);
     margin-bottom: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   .se-title {
     font-family: 'Syne', sans-serif;
@@ -214,26 +237,28 @@ const styles = `
     font-weight: 700;
     color: var(--text2);
     margin: 0;
+    transition: color 0.3s ease;
   }
   .se-sub {
     font-size: 0.85rem;
     color: var(--text3);
     margin: 0;
-    max-width: 280px;
+    max-width: 320px;
     line-height: 1.5;
+    transition: color 0.3s ease;
   }
   .se-btn {
     margin-top: 8px;
     padding: 8px 20px;
     background: var(--accent);
-    color: #0d0d0f;
+    color: #ffffff;
     border: none;
     border-radius: 8px;
     font-family: 'Syne', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
+    transition: opacity 0.2s, transform 0.1s, background-color 0.3s ease;
   }
   .se-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
@@ -263,12 +288,12 @@ const styles = `
     cursor: pointer;
     background: var(--bg3);
     border: 1px solid var(--border);
-    transition: transform 0.22s cubic-bezier(.22,.68,0,1.2), box-shadow 0.22s;
+    transition: transform 0.22s cubic-bezier(.22,.68,0,1.2), box-shadow 0.22s, background-color 0.3s ease, border-color 0.3s ease;
   }
   .sc-card:hover {
     transform: translateY(-3px) scale(1.01);
     box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    border-color: rgba(245,200,66,0.2);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
   }
   .sc-card img {
     width: 100%;
@@ -385,14 +410,14 @@ const styles = `
   .slb-btn-primary {
     padding: 9px 22px;
     background: var(--accent);
-    color: #0d0d0f;
+    color: #ffffff; 
     border: none;
     border-radius: 8px;
     font-family: 'Syne', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.15s;
+    transition: opacity 0.15s, background-color 0.3s ease;
   }
   .slb-btn-primary:hover { opacity: 0.85; }
   .slb-btn-sec {
@@ -417,10 +442,14 @@ const styles = `
 
 export const Search = () => {
   const navigate = useNavigate();
+  const { isDark } = useTheme();
   const [eventos, setEventos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
   const [searchQuery, setSearchQuery] = useState('');
+  const [showAll, setShowAll] = useState(false); // <-- NUEVO ESTADO PARA VER TODOS
+  
   const [selectedImage, setSelectedImage] = useState(null);
   const [columns, setColumns] = useState(3);
 
@@ -451,12 +480,23 @@ export const Search = () => {
     evento.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const clearSearch = () => setSearchQuery('');
+  const clearSearch = () => {
+    setSearchQuery('');
+    setShowAll(false); // Si limpiamos, ocultamos la grilla
+  };
+
   const closeLightbox = () => setSelectedImage(null);
   const handleBgClick = (e) => { if (e.target === e.currentTarget) closeLightbox(); };
 
+  // Manejar el evento "Enter"
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setShowAll(true);
+    }
+  };
+
   return (
-    <div className="search-root">
+    <div className={`search-root ${isDark ? '' : 'light'}`}>
       <style>{styles}</style>
 
       {/* Header */}
@@ -474,12 +514,19 @@ export const Search = () => {
             <input
               type="text"
               className="sb-input"
-              placeholder="Escribe el nombre del evento..."
+              placeholder="Escribe un nombre o Enter para ver todos..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                if (e.target.value !== '') {
+                  setShowAll(false); // Si empieza a escribir, vuelve al flujo normal de filtrado
+                }
+              }}
+              onKeyDown={handleKeyDown} // Detectar el Enter
               autoFocus
             />
-            {searchQuery && (
+            {/* Si hay texto O si le dio a "Ver Todos", mostramos la X */}
+            {(searchQuery || showAll) && (
               <button className="sb-clear" onClick={clearSearch} aria-label="Limpiar búsqueda">
                 <X size={14} />
               </button>
@@ -487,7 +534,7 @@ export const Search = () => {
           </div>
 
           {/* Toolbar */}
-          {searchQuery && (
+          {(searchQuery || showAll) && (
             <div className="sh-toolbar">
               <p className="sh-count">
                 <strong>{filteredEventos.length}</strong>{' '}
@@ -529,13 +576,14 @@ export const Search = () => {
           <div className="se-state">
             <p className="se-title" style={{ color: '#ff6b6b' }}>Error: {error}</p>
           </div>
-        ) : !searchQuery ? (
+        ) : !searchQuery && !showAll ? (
+          /* Si no ha escrito nada y NO ha presionado Enter, mostramos el estado de inicio */
           <div className="se-state">
             <div className="se-icon">
               <SearchIcon size={22} />
             </div>
             <p className="se-title">Empieza a buscar</p>
-            <p className="se-sub">Escribe el nombre de un evento para ver los resultados</p>
+            <p className="se-sub">Escribe el nombre de un evento o presiona <b>Enter</b> para ver todo el catálogo</p>
           </div>
         ) : filteredEventos.length === 0 ? (
           <div className="se-state">
@@ -557,6 +605,7 @@ export const Search = () => {
                 className="sc-card"
                 onClick={() => setSelectedImage(archivo)}
               >
+                {/* IMG CON EL SÍMBOLO DÓLAR ($) CORRECTO */}
                 <img
                   src={`https://lh3.googleusercontent.com/d/${archivo.id}`}
                   alt={archivo.name}
@@ -579,6 +628,7 @@ export const Search = () => {
             <X size={20} />
           </button>
           <div className="slb-body">
+            {/* IMG CON EL SÍMBOLO DÓLAR ($) CORRECTO */}
             <img
               src={`https://lh3.googleusercontent.com/d/${selectedImage.id}`}
               alt={selectedImage.name}

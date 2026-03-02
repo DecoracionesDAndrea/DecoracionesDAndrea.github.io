@@ -1,26 +1,43 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchEventos } from '../api/googleDrive';
+import { useTheme } from '../context/ThemeContext'; // <-- Importamos el tema
 import { ArrowLeft, Hash } from 'lucide-react';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+  /* MODO OSCURO */
   .ed-root {
-    --bg: #0d0d0f;
-    --bg2: #131316;
-    --bg3: #1a1a1f;
-    --border: rgba(255,255,255,0.07);
-    --accent: #f5c842;
-    --accent2: #ff6b35;
-    --text: #f0ede8;
-    --text2: rgba(240,237,232,0.45);
-    --text3: rgba(240,237,232,0.2);
+    --bg: #0f0a1f;        
+    --bg2: #18112e;       
+    --bg3: #231942;       
+    --border: rgba(168, 85, 247, 0.15); 
+    --accent: #c084fc;    
+    --accent2: #e879f9;   
+    --text: #fdfaef;      
+    --text2: rgba(253, 250, 239, 0.65);
+    --text3: rgba(253, 250, 239, 0.3);
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     min-height: 100vh;
     color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* MODO CLARO */
+  .ed-root.light {
+    --bg: #fdfcff;        
+    --bg2: #ffffff;       
+    --bg3: #f3e8ff;       
+    --border: rgba(147, 51, 234, 0.15); 
+    --accent: #9333ea;    
+    --accent2: #d946ef;   
+    --text: #2e1065;      
+    --text2: rgba(46, 16, 101, 0.65);
+    --text3: rgba(46, 16, 101, 0.3);
+  }
+
   .ed-root * { box-sizing: border-box; }
 
   /* Top bar */
@@ -30,6 +47,7 @@ const styles = `
     position: sticky;
     top: 72px;
     z-index: 30;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .ed-topbar-inner {
     max-width: 1100px;
@@ -49,13 +67,13 @@ const styles = `
     font-size: 0.85rem;
     font-weight: 500;
     text-decoration: none;
-    transition: border-color 0.18s, color 0.18s, background 0.18s;
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
     cursor: pointer;
   }
   .ed-back:hover {
     border-color: var(--accent);
     color: var(--accent);
-    background: rgba(245,200,66,0.05);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
   .ed-back svg { flex-shrink: 0; }
 
@@ -86,6 +104,7 @@ const styles = `
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .ed-img-panel img {
     width: 100%;
@@ -109,8 +128,8 @@ const styles = `
     align-items: center;
     gap: 6px;
     padding: 4px 10px;
-    background: rgba(245,200,66,0.1);
-    border: 1px solid rgba(245,200,66,0.2);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
     border-radius: 6px;
     font-size: 0.72rem;
     font-weight: 600;
@@ -118,6 +137,7 @@ const styles = `
     text-transform: uppercase;
     color: var(--accent);
     width: fit-content;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
   .ed-title {
     font-family: 'Syne', sans-serif;
@@ -127,18 +147,21 @@ const styles = `
     color: var(--text);
     margin: 0;
     line-height: 1.15;
+    transition: color 0.3s ease;
   }
   .ed-divider {
     width: 40px;
     height: 3px;
     background: var(--accent);
     border-radius: 2px;
+    transition: background-color 0.3s ease;
   }
   .ed-desc {
     font-size: 0.9rem;
     color: var(--text2);
     line-height: 1.7;
     margin: 0;
+    transition: color 0.3s ease;
   }
 
   /* Meta block */
@@ -150,6 +173,7 @@ const styles = `
     display: flex;
     flex-direction: column;
     gap: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   .ed-meta-row {
     display: flex;
@@ -160,13 +184,14 @@ const styles = `
     width: 28px;
     height: 28px;
     border-radius: 7px;
-    background: rgba(245,200,66,0.08);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--accent);
     flex-shrink: 0;
     margin-top: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   .ed-meta-key {
     font-size: 0.7rem;
@@ -175,6 +200,7 @@ const styles = `
     letter-spacing: 0.08em;
     color: var(--text3);
     margin-bottom: 2px;
+    transition: color 0.3s ease;
   }
   .ed-meta-val {
     font-size: 0.82rem;
@@ -182,6 +208,7 @@ const styles = `
     font-family: 'DM Sans', sans-serif;
     word-break: break-all;
     line-height: 1.4;
+    transition: color 0.3s ease;
   }
 
   /* States */
@@ -208,6 +235,7 @@ const styles = `
     font-size: 0.85rem;
     color: var(--text3);
     margin: 0;
+    transition: color 0.3s ease;
   }
   .ed-notfound {
     font-family: 'Syne', sans-serif;
@@ -235,6 +263,7 @@ const styles = `
 
 export const EventDetail = () => {
   const { id } = useParams();
+  const { isDark } = useTheme(); // <-- Obtenemos el tema aquí
   const [evento, setEvento] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -255,7 +284,8 @@ export const EventDetail = () => {
   }, [id]);
 
   return (
-    <div className="ed-root">
+    // Aplicamos la clase dinámica del tema al contenedor principal
+    <div className={`ed-root ${isDark ? '' : 'light'}`}>
       <style>{styles}</style>
 
       {/* Top bar */}
@@ -284,6 +314,7 @@ export const EventDetail = () => {
           <>
             {/* Imagen */}
             <div className="ed-img-panel">
+              {/* ¡AQUÍ ESTÁ LA CORRECCIÓN CON EL SÍMBOLO $! */}
               <img
                 src={`https://lh3.googleusercontent.com/d/${id}`}
                 alt={evento.name}
