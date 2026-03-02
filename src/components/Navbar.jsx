@@ -337,7 +337,7 @@ export const Navbar = () => {
           <div className="nb-actions">
             {/* WhatsApp */}
             <a
-              href="https://wa.me/TUNUMERO"
+              href="https://wa.me/51998805588?text=Hola,%20vengo%20de%20la%20p%C3%A1gina%20web%20y%20quisiera%20informaci%C3%B3n%20para%20un%20evento."
               target="_blank"
               rel="noreferrer"
               className="nb-wa"
@@ -390,7 +390,7 @@ export const Navbar = () => {
             })}
             <div className="nb-drawer-divider" />
             <a
-              href="https://wa.me/TUNUMERO"
+              href="https://wa.me/51998805588?text=Hola,%20vengo%20de%20la%20p%C3%A1gina%20web%20y%20quisiera%20informaci%C3%B3n%20para%20un%20evento."
               target="_blank"
               rel="noreferrer"
               className="nb-drawer-wa"
