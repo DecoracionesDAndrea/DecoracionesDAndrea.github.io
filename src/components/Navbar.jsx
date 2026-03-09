@@ -272,7 +272,7 @@ const styles = `
 const tabs = [
   { label: 'Inicio',   to: '/',        type: 'link'   },
   { label: 'Galería',  to: '/galeria', type: 'link'   },
-  { label: 'Ubícanos', href: '#ubicacion', type: 'anchor' },
+  { label: 'Ubícanos', to: '/ubicacion', type: 'link' },
   { label: 'Buscar',   to: '/buscar',  type: 'link'   },
 ];
 

@@ -6,6 +6,7 @@ import { Gallery } from './components/Gallery';
 import { GalleryMetro } from './components/GalleryMetro';
 import { EventDetail } from './pages/EventDetail';
 import { Search } from './pages/Search';
+import { Ubicacion } from './pages/Ubicacion';
 import './index.css';
 
 const styles = `
@@ -143,6 +144,7 @@ function App() {
         } />
 
         <Route path="/buscar" element={<Search />} />
+        <Route path="/ubicacion" element={<Ubicacion />} />
         <Route path="/evento/:id" element={<EventDetail />} />
       </Routes>
       </div>
